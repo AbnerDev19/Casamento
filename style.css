@@ -1,19 +1,17 @@
 /* --- VARIÁVEIS E RESET --- */
 
 :root {
-    /* Mantendo o tom Dourado/Mostarda das referências */
     --gold: #B8860B;
-    --accent-light: #f4f1ea;
-    /* Um creme bem suave para fundos alternados */
+    /* Amarelo Escuro/Dourado solicitado */
+    --accent-light: #fbfbfb;
+    /* Off-white muito leve */
     --black: #1a1a1a;
-    /* Preto suave, não 100% preto */
     --text-gray: #555555;
     --white: #ffffff;
     --font-serif: 'Cormorant Garamond', serif;
     --font-sans: 'Montserrat', sans-serif;
     --transition: all 0.5s ease;
     --section-spacing: 120px;
-    /* Espaçamento generoso entre seções */
 }
 
 * {
@@ -35,7 +33,7 @@ body {
 }
 
 
-/* --- TIPOGRAFIA ÉPICA --- */
+/* --- TIPOGRAFIA --- */
 
 h1,
 h2,
@@ -47,12 +45,8 @@ h4 {
     letter-spacing: 1px;
 }
 
-
-/* Títulos Gigantes (Baseado nas imagens 2 e 3) */
-
 .massive-title {
-    font-size: 6rem;
-    /* Muito grande */
+    font-size: 5rem;
     line-height: 0.9;
     font-weight: 300;
     margin-bottom: 40px;
@@ -60,13 +54,17 @@ h4 {
 }
 
 .colossal-title {
-    font-size: 12vw;
-    /* Ocupa a largura da tela */
+    font-size: 10vw;
+    /* Responsivo gigante */
     text-align: center;
     line-height: 1;
     font-weight: 300;
-    opacity: 0.9;
-    margin-bottom: 40px;
+    opacity: 0.15;
+    /* Bem suave ao fundo */
+    margin-bottom: -60px;
+    /* Sobrepõe o texto levemente */
+    position: relative;
+    z-index: 1;
 }
 
 .section-title {
@@ -74,6 +72,8 @@ h4 {
     font-weight: 300;
     margin-bottom: 50px;
     letter-spacing: 3px;
+    position: relative;
+    padding-bottom: 20px;
 }
 
 .italic {
@@ -90,7 +90,7 @@ h4 {
 }
 
 
-/* --- ESTRUTURA & ESPAÇAMENTO --- */
+/* --- ESTRUTURA --- */
 
 .container {
     max-width: 1200px;
@@ -114,51 +114,43 @@ h4 {
 }
 
 .extra-padding-top {
-    padding-top: 180px;
-}
-
-.section-divider {
-    height: 1px;
-    width: 80%;
-    margin: 0 auto;
-    background: rgba(0, 0, 0, 0.1);
+    padding-top: 150px;
 }
 
 
-/* --- NAVBAR TRANSPARENTE --- */
+/* --- NAVBAR CENTRALIZADA (Desktop) --- */
 
 .navbar {
     position: fixed;
     top: 0;
     width: 100%;
     background: transparent;
-    /* Começa transparente */
-    padding: 25px 50px;
+    padding: 30px 0;
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    /* Empilha Logo e Menu */
+    justify-content: center;
     align-items: center;
     z-index: 1000;
     transition: var(--transition);
 }
 
 
-/* Classe adicionada via JS ao rolar */
+/* Navbar ao rolar */
 
 .navbar.scrolled {
     background: rgba(255, 255, 255, 0.98);
-    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
-    padding: 15px 50px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.03);
+    padding: 15px 0;
 }
 
 .logo {
     font-family: var(--font-serif);
-    font-size: 2rem;
+    font-size: 2.2rem;
     color: var(--white);
+    margin-bottom: 15px;
+    letter-spacing: 3px;
     transition: var(--transition);
-}
-
-.navbar.scrolled .logo {
-    color: var(--black);
 }
 
 .nav-links {
@@ -167,21 +159,46 @@ h4 {
 }
 
 .nav-links li a {
-    color: var(--white);
+    color: rgba(255, 255, 255, 0.9);
     text-decoration: none;
-    margin-left: 40px;
-    font-size: 0.75rem;
+    margin: 0 25px;
+    font-size: 0.7rem;
     text-transform: uppercase;
     letter-spacing: 2px;
     font-weight: 500;
     transition: var(--transition);
+    position: relative;
 }
 
-.nav-links li a:hover {
-    color: var(--gold);
+
+/* Linha dourada no hover */
+
+.nav-links li a::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 1px;
+    background: var(--gold);
+    transition: width 0.3s;
+    margin: 5px auto 0;
+}
+
+.nav-links li a:hover::after {
+    width: 100%;
+}
+
+
+/* Cores da navbar quando scrolada (fundo branco) */
+
+.navbar.scrolled .logo {
+    color: var(--black);
 }
 
 .navbar.scrolled .nav-links li a {
+    color: var(--text-gray);
+}
+
+.navbar.scrolled .nav-links li a:hover {
     color: var(--black);
 }
 
@@ -192,17 +209,16 @@ h4 {
     cursor: pointer;
 }
 
-.navbar.scrolled .menu-icon {
-    color: var(--black);
-}
 
-
-/* --- HERO COM PAPEL RASGADO (Imagem 1) --- */
+/* --- HERO --- */
 
 .hero {
     height: 100vh;
-    background: url('https://images.unsplash.com/photo-1601139275972-92c209fb6993?q=80') center/cover no-repeat;
-    /* Imagem mais escura e romântica */
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    /* Efeito parallax */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -214,77 +230,74 @@ h4 {
 .overlay {
     position: absolute;
     inset: 0;
-    background: rgba(0, 0, 0, 0.4);
-    /* Overlay mais suave */
+    background: rgba(0, 0, 0, 0.3);
     z-index: 1;
 }
 
 
-/* O truque do papel rasgado */
+/* Efeito Papel Rasgado na base */
 
 .torn-edge {
     position: absolute;
-    bottom: -2px;
-    /* Ajuste fino para não sobrar linha */
+    bottom: -1px;
     left: 0;
     width: 100%;
-    height: 100px;
-    /* Altura da sua imagem de papel */
+    height: 60px;
+    /* Se você não tiver a imagem, isso cria uma faixa branca simples */
     background: url('torn-paper.png') bottom center repeat-x;
-    /* NOME DA SUA IMAGEM AQUI */
-    background-size: cover;
+    background-size: contain;
     z-index: 3;
 }
 
 .hero-content {
     position: relative;
     z-index: 2;
-    margin-top: 100px;
+    margin-top: 80px;
 }
 
 .pre-title {
     font-size: 1.5rem;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
+    letter-spacing: 2px;
 }
 
 
-/* Countdown Clean */
+/* Countdown */
 
 .countdown-clean {
     display: flex;
     justify-content: center;
-    gap: 50px;
+    gap: 40px;
 }
 
 .time-block span {
     font-family: var(--font-serif);
-    font-size: 5rem;
+    font-size: 4rem;
     line-height: 1;
     font-weight: 300;
 }
 
 .time-block small {
     display: block;
-    font-size: 0.7rem;
+    font-size: 0.6rem;
     letter-spacing: 3px;
     margin-top: 10px;
-    text-transform: uppercase;
+    opacity: 0.8;
 }
 
 
-/* --- BOTÕES "PÍLULA" ELEGANTES --- */
+/* --- BOTÕES --- */
 
 .btn-elegant {
     display: inline-block;
-    padding: 15px 45px;
+    padding: 15px 40px;
     background: transparent;
     color: var(--black);
     border: 1px solid var(--gold);
     border-radius: 50px;
-    /* Formato Pílula */
     text-decoration: none;
     text-transform: uppercase;
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     letter-spacing: 2px;
     font-weight: 600;
     transition: var(--transition);
@@ -297,13 +310,14 @@ h4 {
 }
 
 .btn-elegant.small {
-    padding: 10px 30px;
-    font-size: 0.7rem;
+    padding: 8px 25px;
+    margin-top: 15px;
 }
 
 .btn-elegant.fill {
     background: var(--gold);
     color: var(--white);
+    border-color: var(--gold);
 }
 
 .btn-elegant.fill:hover {
@@ -317,23 +331,19 @@ h4 {
 }
 
 
-/* --- LAYOUT TIMELINE (Baseado na Imagem 2) --- */
+/* --- TIMELINE GRID --- */
 
 .timeline-layout {
     display: grid;
-    grid-template-columns: 1fr 1.5fr;
-    /* Esquerda menor, direita maior */
+    grid-template-columns: 1fr 2fr;
     gap: 80px;
     align-items: start;
 }
 
-
-/* Lado Direito da Timeline */
-
 .timeline-grid {
     display: flex;
     justify-content: space-between;
-    gap: 30px;
+    gap: 20px;
 }
 
 .timeline-item {
@@ -342,63 +352,53 @@ h4 {
     flex: 1;
 }
 
-
-/* Desloca o item do meio para baixo (como na referência) */
-
 .timeline-item.display-down {
-    margin-top: 100px;
+    margin-top: 80px;
 }
 
 
-/* As Imagens em Arco/Oval */
+/* Imagens em Arco */
 
 .arch-image-container {
     position: relative;
     margin-bottom: 30px;
+    transition: var(--transition);
 }
 
 .arch-image {
     width: 100%;
-    height: 400px;
-    /* Altura fixa para uniformidade */
+    height: 350px;
     object-fit: cover;
-    /* O segredo do formato de arco/oval */
     border-radius: 200px 200px 0 0;
+    /* O formato Arco */
     filter: grayscale(100%);
-    /* Preto e branco inicial */
     transition: var(--transition);
 }
 
 .timeline-item:hover .arch-image {
     filter: grayscale(0%);
-    transform: scale(1.02);
+    transform: translateY(-10px);
 }
-
-
-/* Números Gigantes (01., 02.) */
 
 .big-number {
     position: absolute;
-    bottom: -25px;
+    bottom: -20px;
     right: -10px;
     font-family: var(--font-serif);
-    font-size: 5rem;
+    font-size: 4rem;
     color: var(--black);
     line-height: 1;
     z-index: 2;
 }
 
-
-/* Texto e Linhas da Timeline */
-
 .timeline-text h3 {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     margin: 10px 0;
-    letter-spacing: 2px;
+    letter-spacing: 1px;
 }
 
 .timeline-date {
-    font-size: 0.7rem;
+    font-size: 0.65rem;
     text-transform: uppercase;
     letter-spacing: 2px;
     color: #888;
@@ -406,133 +406,123 @@ h4 {
 
 .gold-line-vertical {
     width: 1px;
-    height: 80px;
+    height: 60px;
     background: var(--gold);
-    margin: 30px auto 0;
+    margin: 20px auto 0;
+    opacity: 0.5;
 }
 
 
-/* --- BLOCO DE TEXTO HISTÓRIA (Imagem 3) --- */
+/* --- TEXTO HISTÓRIA --- */
 
 .history-text-block {
     max-width: 600px;
-    margin-top: -80px;
-    /* Sobe para ficar perto do título gigante */
+    margin: -100px 0 0 auto;
+    /* Puxa para cima e para a direita */
     padding: 40px;
     background: var(--white);
-    /* Garante legibilidade se sobrepor algo */
     position: relative;
     z-index: 2;
-}
-
-.align-right {
-    margin-left: auto;
-    /* Alinha o bloco à direita */
+    box-shadow: -20px 20px 60px rgba(0, 0, 0, 0.05);
 }
 
 .history-text-block p {
-    margin-bottom: 25px;
-    font-size: 1rem;
+    margin-bottom: 20px;
+    font-size: 0.95rem;
 }
 
 
-/* --- CARDS CERIMÔNIA CLEAN --- */
+/* --- CARDS --- */
 
 .cards-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 60px;
-    margin-top: 80px;
-}
-
-.clean-card {
-    text-align: center;
-    padding: 60px 40px;
-    background: var(--white);
-    border: 1px solid #eee;
-    /* Borda muito sutil */
-    transition: var(--transition);
-}
-
-.clean-card:hover {
-    border-color: var(--gold);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-}
-
-.clean-card h3 {
-    font-size: 1.8rem;
-    margin-bottom: 20px;
-}
-
-.highlight-time {
-    font-family: var(--font-serif);
-    font-size: 2rem;
-    color: var(--gold);
-    margin-bottom: 10px;
-}
-
-.location {
-    font-weight: 600;
-    color: var(--black);
-    margin-bottom: 5px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-
-/* --- FORMULÁRIO ULTRA CLEAN (Material Style) --- */
-
-.form-clean {
-    margin-top: 60px;
-}
-
-.row {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 40px;
 }
 
+.clean-card {
+    text-align: center;
+    padding: 50px 30px;
+    background: var(--white);
+    border: 1px solid #f0f0f0;
+    transition: var(--transition);
+}
+
+.clean-card:hover {
+    border-color: var(--gold);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.05);
+}
+
+.clean-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.highlight-time {
+    font-family: var(--font-serif);
+    font-size: 2.5rem;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 10px;
+}
+
+.icon-gold-small {
+    color: var(--gold);
+    margin-bottom: 15px;
+    font-size: 1.2rem;
+}
+
+
+/* --- FORMULÁRIO MATERIAL --- */
+
+.form-clean {
+    margin-top: 40px;
+}
+
+.row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
 .input-group {
     position: relative;
-    margin-bottom: 40px;
+    margin-bottom: 30px;
 }
 
 input,
 select {
     width: 100%;
-    padding: 15px 0;
+    padding: 10px 0;
     font-family: var(--font-sans);
     font-size: 1rem;
     color: var(--black);
     border: none;
-    border-bottom: 1px solid #ccc;
+    border-bottom: 1px solid #ddd;
     outline: none;
     background: transparent;
-    transition: var(--transition);
+    border-radius: 0;
 }
 
 
-/* Label flutuante */
+/* Labels Animadas */
 
 .input-group label {
     position: absolute;
-    top: 15px;
+    top: 10px;
     left: 0;
-    font-size: 0.9rem;
-    color: #999;
+    font-size: 0.8rem;
+    color: #aaa;
     pointer-events: none;
-    transition: var(--transition);
+    transition: 0.3s;
     text-transform: uppercase;
     letter-spacing: 1px;
 }
 
-
-/* Animação do Label e da Barra */
-
 input:focus~label,
 input:valid~label {
-    top: -20px;
-    font-size: 0.7rem;
+    top: -15px;
+    font-size: 0.65rem;
     color: var(--gold);
 }
 
@@ -550,7 +540,7 @@ input:valid~label {
     bottom: 0;
     position: absolute;
     background: var(--gold);
-    transition: var(--transition);
+    transition: 0.3s;
 }
 
 .bar:before {
@@ -568,20 +558,15 @@ select:focus~.bar:after {
     width: 50%;
 }
 
-select {
-    -webkit-appearance: none;
-    border-radius: 0;
-}
 
-
-/* --- DRESS CODE VISUAL --- */
+/* --- DRESS CODE --- */
 
 .dress-code-content {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 80px;
-    margin-top: 80px;
+    gap: 60px;
+    margin-top: 40px;
 }
 
 .dress-text {
@@ -590,35 +575,32 @@ select {
 
 .text-big {
     font-family: var(--font-serif);
-    font-size: 3rem;
-    line-height: 1.2;
-    margin-bottom: 20px;
+    font-size: 2.5rem;
+    margin-bottom: 10px;
 }
 
 .dress-image img {
-    width: 300px;
-    height: 400px;
+    width: 250px;
+    height: 350px;
     object-fit: cover;
-    border-radius: 200px 200px 0 0;
-    /* Arco novamente */
-    filter: grayscale(30%);
+    border-radius: 150px 150px 0 0;
 }
 
 
-/* --- FOOTER MINIMALISTA --- */
+/* --- FOOTER --- */
 
 .footer-minimal {
     text-align: center;
-    padding: 80px 0;
+    padding: 60px 0;
     background: var(--white);
-    border-top: 1px solid #eee;
+    border-top: 1px solid #f5f5f5;
 }
 
 .logo-small {
     font-family: var(--font-serif);
     font-size: 1.5rem;
     color: var(--black);
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 
@@ -635,53 +617,41 @@ select {
     transform: translateY(0);
 }
 
-@media (max-width: 1024px) {
-    .timeline-layout {
-        grid-template-columns: 1fr;
-        gap: 50px;
-    }
-    .big-title-block {
-        text-align: center;
-        margin-bottom: 60px;
-    }
-    .timeline-grid {
-        gap: 20px;
-    }
-    .timeline-item.display-down {
-        margin-top: 50px;
-    }
-    .arch-image {
-        height: 300px;
-    }
-    .massive-title {
-        font-size: 4rem;
-    }
-}
+
+/* MOBILE */
 
 @media (max-width: 768px) {
+    /* Navbar volta ao padrão lateral no mobile */
     .navbar {
+        flex-direction: row;
+        justify-content: space-between;
         padding: 15px 20px;
-        background: rgba(255, 255, 255, 0.9);
     }
-    .navbar .logo,
-    .navbar .menu-icon {
-        color: var(--black);
+    .navbar.scrolled {
+        flex-direction: row;
+        padding: 15px 20px;
+    }
+    .logo {
+        margin-bottom: 0;
+        font-size: 1.4rem;
     }
     .nav-links {
         display: none;
     }
-    /* Menu mobile simplificado */
     .menu-icon {
         display: block;
     }
-    .hero-content {
-        margin-top: 50px;
+    /* Outros ajustes */
+    .hero {
+        background-attachment: scroll;
     }
-    .time-block span {
+    .massive-title {
         font-size: 3rem;
+        text-align: center;
     }
-    .countdown-clean {
-        gap: 20px;
+    .timeline-layout {
+        grid-template-columns: 1fr;
+        gap: 40px;
     }
     .timeline-grid {
         flex-direction: column;
@@ -690,38 +660,37 @@ select {
         margin-top: 0;
     }
     .arch-image {
-        height: 350px;
+        height: 250px;
     }
     .gold-line-vertical {
         display: none;
     }
-    /* Remove linhas no mobile */
-    .big-number {
-        font-size: 3rem;
-        bottom: -15px;
-    }
-    .massive-title {
-        font-size: 3.5rem;
-    }
     .colossal-title {
-        font-size: 18vw;
+        font-size: 15vw;
         margin-bottom: 20px;
+        opacity: 0.1;
     }
     .history-text-block {
-        margin-top: 0;
+        margin: 0;
         padding: 20px;
+        box-shadow: none;
+        border: 1px solid #eee;
     }
-    .cards-grid,
-    .row,
     .dress-code-content {
-        grid-template-columns: 1fr;
         flex-direction: column;
-        gap: 40px;
+        gap: 30px;
     }
     .dress-text {
         text-align: center;
     }
-    .extra-padding-top {
-        padding-top: 100px;
+    .cards-grid,
+    .row {
+        grid-template-columns: 1fr;
+    }
+    .countdown-clean {
+        gap: 15px;
+    }
+    .time-block span {
+        font-size: 2.5rem;
     }
 }

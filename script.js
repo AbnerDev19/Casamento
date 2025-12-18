@@ -1,6 +1,7 @@
-// Contagem Regressiva (Mesma lógica, IDs ajustados se necessário)
+// --- CONFIGURAÇÃO DA DATA DO CASAMENTO ---
 const weddingDate = new Date('2026-06-20T15:00:00').getTime();
 
+// --- CONTAGEM REGRESSIVA ---
 const countdown = setInterval(function() {
     const now = new Date().getTime();
     const distance = weddingDate - now;
@@ -10,19 +11,23 @@ const countdown = setInterval(function() {
     const minutes = Math.floor((distance / (1000 * 60)) % 60);
     const seconds = Math.floor((distance / 1000) % 60);
 
-    document.getElementById("days").innerText = days < 10 ? "0" + days : days;
-    document.getElementById("hours").innerText = hours < 10 ? "0" + hours : hours;
-    document.getElementById("minutes").innerText = minutes < 10 ? "0" + minutes : minutes;
-    document.getElementById("seconds").innerText = seconds < 10 ? "0" + seconds : seconds;
+    // Verifica se os elementos existem antes de tentar alterar
+    if (document.getElementById("days")) {
+        document.getElementById("days").innerText = days < 10 ? "0" + days : days;
+        document.getElementById("hours").innerText = hours < 10 ? "0" + hours : hours;
+        document.getElementById("minutes").innerText = minutes < 10 ? "0" + minutes : minutes;
+        document.getElementById("seconds").innerText = seconds < 10 ? "0" + seconds : seconds;
+    }
 
     if (distance < 0) {
         clearInterval(countdown);
     }
 }, 1000);
 
-// Navbar muda de cor ao rolar
+// --- NAVBAR SCROLL EFFECT ---
 window.addEventListener('scroll', () => {
     const navbar = document.querySelector('.navbar');
+    // Adiciona classe 'scrolled' se rolar mais de 50px
     if (window.scrollY > 50) {
         navbar.classList.add('scrolled');
     } else {
@@ -30,35 +35,42 @@ window.addEventListener('scroll', () => {
     }
 });
 
-// Menu Mobile
+// --- MENU MOBILE ---
 const menuIcon = document.querySelector('.menu-icon');
 const navLinks = document.querySelector('.nav-links');
+
 menuIcon.addEventListener('click', () => {
-    navLinks.classList.toggle('active');
-    // Adicione estilos CSS para .nav-links.active se quiser um menu dropdown
+    // Alterna visibilidade
     if (navLinks.style.display === 'flex') {
         navLinks.style.display = 'none';
+        menuIcon.innerHTML = '<i class="fas fa-bars"></i>'; // Ícone hambúrguer
     } else {
         navLinks.style.display = 'flex';
         navLinks.style.flexDirection = 'column';
         navLinks.style.position = 'absolute';
-        navLinks.style.top = '70px';
+        navLinks.style.top = '60px';
         navLinks.style.left = '0';
         navLinks.style.width = '100%';
-        navLinks.style.background = 'white';
+        navLinks.style.background = '#ffffff';
         navLinks.style.padding = '30px';
-        navLinks.style.boxShadow = '0 5px 10px rgba(0,0,0,0.1)';
+        navLinks.style.boxShadow = '0 10px 30px rgba(0,0,0,0.1)';
+
+        // Estilizando links no mobile para ficarem escuros
+        const links = navLinks.querySelectorAll('a');
+        links.forEach(link => link.style.color = '#111');
+
+        menuIcon.innerHTML = '<i class="fas fa-times"></i>'; // Ícone X
     }
 });
 
-// Animação de Scroll (Intersection Observer)
+// --- ANIMAÇÃO AO ROLAR (INTERSECTION OBSERVER) ---
 const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
         if (entry.isIntersecting) {
             entry.target.classList.add('show-element');
         }
     });
-});
+}, { threshold: 0.1 }); // Dispara quando 10% do elemento aparece
 
 const hiddenElements = document.querySelectorAll('.hidden-element');
 hiddenElements.forEach((el) => observer.observe(el));
