@@ -4,9 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ana & João | Save The Date</title>
+    <title>Matheus & Daiara | Save The Date</title>
+    <meta name="description" content="Matheus & Daiara vão se casar em 7 de setembro de 2027. Confirme sua presença.">
 
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=Montserrat:wght@300;400;500;600&family=Tangerine:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
     <link rel="stylesheet" href="style.css">
@@ -14,20 +17,29 @@
 
 <body>
 
+    <div class="page-loader" id="pageLoader">
+        <div class="loader-mark">M <span class="gold">&amp;</span> D</div>
+    </div>
+
     <nav class="navbar">
-        <div class="logo">A <span class="gold">&</span> G</div>
+        <div class="logo">M <span class="gold">&amp;</span> D</div>
         <ul class="nav-links">
             <li><a href="#home">Início</a></li>
-            <li><a href="#timeline">Nossa Jornada</a></li>
+            <li><a href="#timeline">O Pedido</a></li>
             <li><a href="#ceremony">O Grande Dia</a></li>
-            <li><a href="#rsvp">RSVP</a></li>
+            <li><a href="#galeria">Galeria</a></li>
+            <li><a href="#rsvp" class="nav-cta">Confirmar Presença</a></li>
         </ul>
         <div class="menu-icon"><i class="fas fa-bars"></i></div>
     </nav>
 
-    <header id="home" class="hero" style="background-image: url('https://images.unsplash.com/photo-1532712938310-34cb3982ef74?q=80&w=2070&auto=format&fit=crop');">
+    <header id="home" class="hero" style="background-image: url('images/3-IMG_4756.jpg');">
+        <div class="overlay"></div>
+        <div class="hero-petals" aria-hidden="true"></div>
         <div class="hero-content hidden-element">
-            <p class="pre-title italic">Nós dissemos sim!</p>
+            <p class="pre-title italic">Vamos nos casar</p>
+            <h1 class="hero-names">Matheus <span class="amp">&amp;</span> Daiara</h1>
+            <p class="hero-date">07 DE SETEMBRO DE 2027</p>
 
             <div class="countdown-clean">
                 <div class="time-block"><span id="days">00</span><small>DIAS</small></div>
@@ -35,51 +47,54 @@
                 <div class="time-block"><span id="minutes">00</span><small>MIN</small></div>
                 <div class="time-block"><span id="seconds">00</span><small>SEG</small></div>
             </div>
+
+            <a href="#rsvp" class="btn-elegant fill hero-btn">Confirmar Presença</a>
         </div>
-        <div class="overlay"></div>
-        <div class="torn-edge"></div>
+        <div class="scroll-cue" aria-hidden="true"><span></span></div>
     </header>
 
     <section id="timeline" class="section-clean extra-padding-top">
         <div class="container">
             <div class="timeline-layout">
                 <div class="big-title-block hidden-element">
-                    <h2 class="massive-title">NOSSA<br>LINHA<br>DO TEMPO</h2>
+                    <p class="pre-title italic small">22 de agosto de 2026</p>
+                    <h2 class="massive-title">NOSSA<br>HISTÓRIA<br>DE AMOR</h2>
+                    <p class="timeline-intro">O dia em que tudo ficou ainda mais especial. Guardamos cada segundo desse momento pra sempre — e agora contamos os dias para o próximo grande capítulo.</p>
                     <a href="#rsvp" class="btn-elegant">Confirme sua presença</a>
                 </div>
 
                 <div class="timeline-grid hidden-element">
                     <div class="timeline-item">
                         <div class="arch-image-container">
-                            <img src="https://images.unsplash.com/photo-1522673607200-1645062cd958?q=80&w=2000&auto=format&fit=crop" alt="O Começo" class="arch-image">
+                            <img src="images/6-IMG_4736.jpg" alt="A surpresa do pedido" class="arch-image" loading="lazy">
                             <span class="big-number">01.</span>
                         </div>
                         <div class="timeline-text">
-                            <span class="timeline-date">10 ABRIL 2018</span>
-                            <h3>O Primeiro Olhar</h3>
+                            <span class="timeline-date">22 AGO 2026</span>
+                            <h3>A Surpresa</h3>
                             <div class="gold-line-vertical"></div>
                         </div>
                     </div>
 
                     <div class="timeline-item display-down">
                         <div class="arch-image-container">
-                            <img src="https://images.unsplash.com/photo-1605646194723-64478170c060?q=80&w=1974&auto=format&fit=crop" alt="O Pedido" class="arch-image">
+                            <img src="images/10-IMG_4633.jpg" alt="O pedido de casamento" class="arch-image" loading="lazy">
                             <span class="big-number">02.</span>
                         </div>
                         <div class="timeline-text">
-                            <span class="timeline-date">18 NOV 2023</span>
-                            <h3>O Pedido</h3>
+                            <span class="timeline-date">22 AGO 2026</span>
+                            <h3>De Joelhos</h3>
                             <div class="gold-line-vertical"></div>
                         </div>
                     </div>
 
                     <div class="timeline-item">
                         <div class="arch-image-container">
-                            <img src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80" alt="O Casamento" class="arch-image">
+                            <img src="images/4-IMG_4753.jpg" alt="Ela disse sim" class="arch-image" loading="lazy">
                             <span class="big-number">03.</span>
                         </div>
                         <div class="timeline-text">
-                            <span class="timeline-date">20 JUNHO 2026</span>
+                            <span class="timeline-date">07 SET 2027</span>
                             <h3>O Grande Dia</h3>
                         </div>
                     </div>
@@ -90,11 +105,16 @@
 
     <section class="section-cream">
         <div class="container">
-            <h2 class="colossal-title hidden-element">HISTÓRIA</h2>
-            <div class="history-text-block hidden-element align-right">
-                <p>Assim, costumávamos terminar nossos textos. Em uma cidade sonhada, onde nos encontrávamos em nossas imaginações. Talvez você encontre algumas dezenas de poemas escritos em nossas redes sociais com essa assinatura.</p>
-                <p>Nos conhecemos em 10 de Abril de 2018. Gosto (eu, o noivo), de pensar que – guardadas as devidas proporções –, nos encontramos em um encontro às escuras do século XXI.</p>
-                <a href="#" class="btn-elegant">Ler Mais</a>
+            <h2 class="colossal-title hidden-element">SIM</h2>
+            <div class="history-layout hidden-element">
+                <div class="history-photo">
+                    <img src="images/9-IMG_4656.jpg" alt="Matheus e Daiara" loading="lazy">
+                </div>
+                <div class="history-text-block align-right">
+                    <p class="italic quote-mark">"Depois desse dia, tudo passou a ter uma data para se realizar."</p>
+                    <p>Em 22 de agosto de 2026, Matheus pediu Daiara em casamento — e claro, ela disse sim. Agora contamos os dias para celebrar esse novo capítulo ao lado de quem a gente ama.</p>
+                    <p>Ainda estamos organizando os últimos detalhes do grande dia, mas já garantimos o mais importante: a data. Assim que tivermos horário e local definidos, tudo será atualizado aqui.</p>
+                </div>
             </div>
         </div>
     </section>
@@ -102,22 +122,23 @@
     <section id="ceremony" class="section-clean">
         <div class="container hidden-element">
             <h2 class="section-title center">O Grande Dia</h2>
+            <p class="subtitle center">Os detalhes finais ainda estão sendo definidos — assim que confirmarmos horário e local, atualizamos por aqui.</p>
             <div class="cards-grid">
                 <div class="clean-card">
                     <i class="fas fa-church icon-gold-small"></i>
                     <h3>Cerimônia</h3>
-                    <p class="highlight-time">15:00h</p>
-                    <p class="location">Capela Santa Clara</p>
-                    <p class="address">Rua das Flores, 123</p>
-                    <button class="btn-elegant small">Ver Mapa</button>
+                    <p class="highlight-time">07.09.2027</p>
+                    <p class="location">Horário a definir</p>
+                    <p class="address">Local em breve</p>
+                    <span class="tbd-tag">Em breve</span>
                 </div>
                 <div class="clean-card">
                     <i class="fas fa-glass-cheers icon-gold-small"></i>
                     <h3>Recepção</h3>
-                    <p class="highlight-time">18:00h</p>
-                    <p class="location">Espaço Villa Garden</p>
-                    <p class="address">Av. Principal, 500</p>
-                    <button class="btn-elegant small">Ver Mapa</button>
+                    <p class="highlight-time">07.09.2027</p>
+                    <p class="location">Horário a definir</p>
+                    <p class="address">Local em breve</p>
+                    <span class="tbd-tag">Em breve</span>
                 </div>
             </div>
         </div>
@@ -128,24 +149,42 @@
             <h2 class="section-title">Dress Code</h2>
             <div class="dress-code-content">
                 <div class="dress-text">
-                    <p class="text-big gold">Passeio Completo</p>
-                    <p>Tons terrosos, tecidos naturais e elegância sem esforço.</p>
+                    <p class="text-big gold">Elegante &amp; Confortável</p>
+                    <p>Vista-se à vontade para celebrar com a gente — tons suaves, tecidos leves e elegância sem esforço.</p>
                     <br>
-                    <small style="color: #999; text-transform: uppercase; letter-spacing: 1px;">Evitar cor branca</small>
+                    <small class="dress-note">Evitar cor branca</small>
                 </div>
                 <div class="dress-image">
-                    <img src="https://images.unsplash.com/photo-1507646580911-37d45c71121d?q=80&w=1974&auto=format&fit=crop" alt="Inspiração Dress Code">
+                    <img src="images/1-IMG_4770.jpg" alt="Inspiração Dress Code" loading="lazy">
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="rsvp" class="section-cream">
-        <div class="container narrow hidden-element">
-            <h2 class="section-title center">R.S.V.P</h2>
-            <p class="subtitle center">Por favor, confirme sua presença até 20/05/2026.</p>
+    <section id="galeria" class="section-cream gallery-section">
+        <div class="container hidden-element">
+            <h2 class="section-title center">Galeria</h2>
+            <p class="subtitle center">Alguns momentos do dia em que tudo começou a ganhar data.</p>
+            <div class="gallery-grid">
+                <div class="gallery-item" data-full="images/2-IMG_4762.jpg"><img src="images/2-IMG_4762.jpg" alt="Daiara sorrindo com o buquê" loading="lazy"></div>
+                <div class="gallery-item tall" data-full="images/11-IMG_4610.jpg"><img src="images/11-IMG_4610.jpg" alt="Abraço apertado" loading="lazy"></div>
+                <div class="gallery-item" data-full="images/5-IMG_4752.jpg"><img src="images/5-IMG_4752.jpg" alt="Casal sob as luzes" loading="lazy"></div>
+                <div class="gallery-item" data-full="images/7-IMG_4729.jpg"><img src="images/7-IMG_4729.jpg" alt="Entregando o buquê" loading="lazy"></div>
+                <div class="gallery-item tall" data-full="images/8-IMG_4702.jpg"><img src="images/8-IMG_4702.jpg" alt="Caminhando de mãos dadas" loading="lazy"></div>
+                <div class="gallery-item" data-full="images/12-IMG_4591.jpg"><img src="images/12-IMG_4591.jpg" alt="Caminhando juntos" loading="lazy"></div>
+            </div>
+        </div>
+    </section>
 
-            <form class="form-clean">
+    <section id="rsvp" class="rsvp-feature">
+        <div class="rsvp-bg" style="background-image: url('images/5-IMG_4752.jpg');"></div>
+        <div class="overlay rsvp-overlay"></div>
+        <div class="container narrow hidden-element">
+            <p class="pre-title italic center rsvp-eyebrow">Sua presença é o nosso maior presente</p>
+            <h2 class="section-title center rsvp-title">Confirme Sua Presença</h2>
+            <p class="subtitle center rsvp-subtitle">Ainda não temos horário definido, mas já reservamos o dia 07 de setembro de 2027 — e queremos muito contar com você. Confirme abaixo para garantirmos seu lugar.</p>
+
+            <form class="form-clean rsvp-form" id="rsvpForm">
                 <div class="input-group">
                     <input type="text" required>
                     <label>Nome Completo</label>
@@ -154,9 +193,9 @@
 
                 <div class="row">
                     <div class="input-group">
-                        <select>
+                        <select required>
                             <option value="" disabled selected>Adultos</option>
-                            <option>1</option><option>2</option><option>3</option>
+                            <option>1</option><option>2</option><option>3</option><option>4</option>
                         </select>
                         <span class="bar"></span>
                     </div>
@@ -168,15 +207,32 @@
                         <span class="bar"></span>
                     </div>
                 </div>
+
+                <div class="input-group">
+                    <textarea rows="3"></textarea>
+                    <label>Alguma restrição alimentar ou observação?</label>
+                    <span class="bar"></span>
+                </div>
+
                 <button type="submit" class="btn-elegant fill center-btn">Enviar Confirmação</button>
             </form>
+
+            <div class="rsvp-success hidden" id="rsvpSuccess">
+                <i class="fas fa-heart"></i>
+                <p>Presença confirmada! Mal podemos esperar para celebrar com você.</p>
+            </div>
         </div>
     </section>
 
     <footer class="footer-minimal">
-        <div class="logo-small">A <span class="gold">&</span> G</div>
-        <small>Feito com amor • 2026</small>
+        <div class="logo-small">M <span class="gold">&amp;</span> D</div>
+        <small>Matheus &amp; Daiara • 07.09.2027</small>
     </footer>
+
+    <div class="lightbox" id="lightbox">
+        <button class="lightbox-close" id="lightboxClose" aria-label="Fechar"><i class="fas fa-times"></i></button>
+        <img src="" alt="" id="lightboxImg">
+    </div>
 
     <script src="script.js"></script>
 </body>
