@@ -5,7 +5,6 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('load', () => {
         setTimeout(() => loader.classList.add('loaded'), 400);
     });
-    // fallback caso 'load' demore (ex: imagens grandes)
     setTimeout(() => loader.classList.add('loaded'), 2500);
 
 
@@ -16,28 +15,22 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
 
-    /* --- MENU MOBILE --- */
-    const menuIcon = document.querySelector('.menu-icon');
-    const navLinks = document.querySelector('.nav-links');
-    menuIcon.addEventListener('click', () => {
-        const isOpen = navLinks.style.display === 'flex';
-        navLinks.style.display = isOpen ? 'none' : 'flex';
-        navLinks.style.flexDirection = 'column';
-        navLinks.style.position = 'absolute';
-        navLinks.style.top = '100%';
-        navLinks.style.left = '0';
-        navLinks.style.width = '100%';
-        navLinks.style.background = 'rgba(255,255,255,0.98)';
-        navLinks.style.padding = '20px 0';
-        navLinks.style.boxShadow = '0 10px 20px rgba(0,0,0,0.05)';
-        navLinks.querySelectorAll('a').forEach(a => a.style.color = '#333');
-        navLinks.querySelectorAll('li').forEach(li => li.style.margin = '12px 0');
-        menuIcon.querySelector('i').className = isOpen ? 'fas fa-bars' : 'fas fa-times';
-    });
-    navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
-        navLinks.style.display = 'none';
-        menuIcon.querySelector('i').className = 'fas fa-bars';
-    }));
+    /* --- MENU MOBILE FULLSCREEN --- */
+    const menuIcon = document.getElementById('menuIcon');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const mobileMenuClose = document.getElementById('mobileMenuClose');
+
+    function openMobileMenu() {
+        mobileMenu.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+    function closeMobileMenu() {
+        mobileMenu.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+    menuIcon.addEventListener('click', openMobileMenu);
+    mobileMenuClose.addEventListener('click', closeMobileMenu);
+    mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMobileMenu));
 
 
     /* --- SCROLL REVEAL --- */
@@ -53,28 +46,11 @@ document.addEventListener('DOMContentLoaded', () => {
     revealEls.forEach(el => observer.observe(el));
 
 
-    /* --- PÉTALAS FLUTUANTES NO HERO --- */
-    const petalContainer = document.querySelector('.hero-petals');
-    if (petalContainer) {
-        const petalCount = window.innerWidth < 768 ? 12 : 22;
-        for (let i = 0; i < petalCount; i++) {
-            const petal = document.createElement('span');
-            const size = 5 + Math.random() * 6;
-            petal.style.width = `${size}px`;
-            petal.style.height = `${size}px`;
-            petal.style.left = `${Math.random() * 100}%`;
-            petal.style.animationDuration = `${8 + Math.random() * 10}s`;
-            petal.style.animationDelay = `${Math.random() * 10}s`;
-            petal.style.opacity = 0.3 + Math.random() * 0.5;
-            petalContainer.appendChild(petal);
-        }
-    }
-
-
-    /* --- COUNTDOWN --- */
+    /* --- COUNTDOWN (com meses) --- */
     // Data do casamento definida: 07 de setembro de 2027. Horário ainda não definido.
-    const weddingDate = new Date('2027-09-07T00:00:00-03:00').getTime();
+    const weddingDate = new Date('2027-09-07T00:00:00-03:00');
 
+    const monthsEl = document.getElementById('months');
     const daysEl = document.getElementById('days');
     const hoursEl = document.getElementById('hours');
     const minutesEl = document.getElementById('minutes');
@@ -85,25 +61,36 @@ document.addEventListener('DOMContentLoaded', () => {
         if (el.textContent !== padded) {
             el.textContent = padded;
             el.classList.remove('tick');
-            void el.offsetWidth; // reinicia a animação
+            void el.offsetWidth;
             el.classList.add('tick');
         }
     }
 
     function updateCountdown() {
-        const now = new Date().getTime();
-        const distance = weddingDate - now;
+        const now = new Date();
 
-        if (distance < 0) {
-            [daysEl, hoursEl, minutesEl, secondsEl].forEach(el => el.textContent = '00');
+        if (weddingDate - now < 0) {
+            [monthsEl, daysEl, hoursEl, minutesEl, secondsEl].forEach(el => el.textContent = '00');
             return;
         }
 
-        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        // Diferença calendário-aware em meses e dias
+        let months = (weddingDate.getFullYear() - now.getFullYear()) * 12 + (weddingDate.getMonth() - now.getMonth());
+        let anchor = new Date(now);
+        anchor.setMonth(anchor.getMonth() + months);
+        if (anchor > weddingDate) {
+            months -= 1;
+            anchor = new Date(now);
+            anchor.setMonth(anchor.getMonth() + months);
+        }
 
+        const remainderMs = weddingDate - anchor;
+        const days = Math.floor(remainderMs / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((remainderMs % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((remainderMs % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((remainderMs % (1000 * 60)) / 1000);
+
+        setWithTick(monthsEl, months);
         setWithTick(daysEl, days);
         setWithTick(hoursEl, hours);
         setWithTick(minutesEl, minutes);
@@ -138,7 +125,10 @@ document.addEventListener('DOMContentLoaded', () => {
         if (e.target === lightbox) closeLightbox();
     });
     document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') closeLightbox();
+        if (e.key === 'Escape') {
+            closeLightbox();
+            closeMobileMenu();
+        }
     });
 
 

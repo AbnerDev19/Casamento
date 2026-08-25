@@ -9,7 +9,7 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=Montserrat:wght@300;400;500;600&family=Tangerine:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=Montserrat:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
     <link rel="stylesheet" href="style.css">
@@ -18,37 +18,52 @@
 <body>
 
     <div class="page-loader" id="pageLoader">
-        <div class="loader-mark">M <span class="gold">&amp;</span> D</div>
+        <div class="loader-mark">M <span>&amp;</span> D</div>
     </div>
 
     <nav class="navbar">
-        <div class="logo">M <span class="gold">&amp;</span> D</div>
-        <ul class="nav-links">
-            <li><a href="#home">Início</a></li>
-            <li><a href="#timeline">O Pedido</a></li>
-            <li><a href="#ceremony">O Grande Dia</a></li>
-            <li><a href="#galeria">Galeria</a></li>
-            <li><a href="#rsvp" class="nav-cta">Confirmar Presença</a></li>
-        </ul>
-        <div class="menu-icon"><i class="fas fa-bars"></i></div>
+        <div class="nav-inner">
+            <div class="nav-mark" aria-hidden="true">M&amp;D</div>
+            <ul class="nav-links">
+                <li><a href="#home">início</a></li>
+                <li><a href="#timeline">nossa história</a></li>
+                <li><a href="#ceremony">o grande dia</a></li>
+                <li><a href="#galeria">álbum de fotos</a></li>
+                <li><a href="#rsvp" class="nav-cta">confirme presença</a></li>
+            </ul>
+            <div class="menu-icon" id="menuIcon"><span></span><span></span></div>
+        </div>
     </nav>
+
+    <div class="mobile-menu" id="mobileMenu">
+        <button class="mobile-menu-close" id="mobileMenuClose" aria-label="Fechar"><i class="fas fa-times"></i></button>
+        <div class="mobile-menu-mark">M&amp;D</div>
+        <ul>
+            <li><a href="#home">início</a></li>
+            <li><a href="#timeline">nossa história</a></li>
+            <li><a href="#ceremony">o grande dia</a></li>
+            <li><a href="#galeria">álbum de fotos</a></li>
+            <li><a href="#rsvp">confirme presença</a></li>
+        </ul>
+    </div>
 
     <header id="home" class="hero" style="background-image: url('images/3-IMG_4756.jpg');">
         <div class="overlay"></div>
-        <div class="hero-petals" aria-hidden="true"></div>
         <div class="hero-content hidden-element">
-            <p class="pre-title italic">Vamos nos casar</p>
-            <h1 class="hero-names">Matheus <span class="amp">&amp;</span> Daiara</h1>
-            <p class="hero-date">07 DE SETEMBRO DE 2027</p>
+            <div class="hero-name-stack">
+                <h1 class="hero-names echo">Matheus &amp; Daiara</h1>
+                <h1 class="hero-names main">Matheus &amp; Daiara</h1>
+            </div>
+            <p class="hero-tagline italic">nas ditas linhas em que nos encontramos</p>
 
             <div class="countdown-clean">
-                <div class="time-block"><span id="days">00</span><small>DIAS</small></div>
-                <div class="time-block"><span id="hours">00</span><small>HRS</small></div>
-                <div class="time-block"><span id="minutes">00</span><small>MIN</small></div>
-                <div class="time-block"><span id="seconds">00</span><small>SEG</small></div>
+                <div class="time-block"><span id="months">00</span><small>mês</small></div>
+                <div class="time-block"><span id="days">00</span><small>dias</small></div>
+                <div class="time-block"><span id="hours">00</span><small>horas</small></div>
+                <div class="time-block"><span id="minutes">00</span><small>minutos</small></div>
+                <div class="time-block"><span id="seconds">00</span><small>segundos</small></div>
             </div>
-
-            <a href="#rsvp" class="btn-elegant fill hero-btn">Confirmar Presença</a>
+            <p class="hero-location">07 DE SETEMBRO DE 2027</p>
         </div>
         <div class="scroll-cue" aria-hidden="true"><span></span></div>
     </header>
@@ -58,9 +73,9 @@
             <div class="timeline-layout">
                 <div class="big-title-block hidden-element">
                     <p class="pre-title italic small">22 de agosto de 2026</p>
-                    <h2 class="massive-title">NOSSA<br>HISTÓRIA<br>DE AMOR</h2>
+                    <h2 class="massive-title">nossa<br>história<br>de amor</h2>
                     <p class="timeline-intro">O dia em que tudo ficou ainda mais especial. Guardamos cada segundo desse momento pra sempre — e agora contamos os dias para o próximo grande capítulo.</p>
-                    <a href="#rsvp" class="btn-elegant">Confirme sua presença</a>
+                    <a href="#rsvp" class="btn-elegant">confirme sua presença</a>
                 </div>
 
                 <div class="timeline-grid hidden-element">
@@ -70,9 +85,9 @@
                             <span class="big-number">01.</span>
                         </div>
                         <div class="timeline-text">
-                            <span class="timeline-date">22 AGO 2026</span>
-                            <h3>A Surpresa</h3>
-                            <div class="gold-line-vertical"></div>
+                            <span class="timeline-date">22 ago 2026</span>
+                            <h3>a surpresa</h3>
+                            <div class="line-vertical"></div>
                         </div>
                     </div>
 
@@ -82,9 +97,9 @@
                             <span class="big-number">02.</span>
                         </div>
                         <div class="timeline-text">
-                            <span class="timeline-date">22 AGO 2026</span>
-                            <h3>De Joelhos</h3>
-                            <div class="gold-line-vertical"></div>
+                            <span class="timeline-date">22 ago 2026</span>
+                            <h3>de joelhos</h3>
+                            <div class="line-vertical"></div>
                         </div>
                     </div>
 
@@ -94,8 +109,8 @@
                             <span class="big-number">03.</span>
                         </div>
                         <div class="timeline-text">
-                            <span class="timeline-date">07 SET 2027</span>
-                            <h3>O Grande Dia</h3>
+                            <span class="timeline-date">07 set 2027</span>
+                            <h3>o grande dia</h3>
                         </div>
                     </div>
                 </div>
@@ -105,7 +120,7 @@
 
     <section class="section-cream">
         <div class="container">
-            <h2 class="colossal-title hidden-element">SIM</h2>
+            <h2 class="colossal-title hidden-element">sim</h2>
             <div class="history-layout hidden-element">
                 <div class="history-photo">
                     <img src="images/9-IMG_4656.jpg" alt="Matheus e Daiara" loading="lazy">
@@ -119,40 +134,32 @@
         </div>
     </section>
 
-    <section id="ceremony" class="section-clean">
-        <div class="container hidden-element">
-            <h2 class="section-title center">O Grande Dia</h2>
-            <p class="subtitle center">Os detalhes finais ainda estão sendo definidos — assim que confirmarmos horário e local, atualizamos por aqui.</p>
-            <div class="cards-grid">
-                <div class="clean-card">
-                    <i class="fas fa-church icon-gold-small"></i>
-                    <h3>Cerimônia</h3>
-                    <p class="highlight-time">07.09.2027</p>
-                    <p class="location">Horário a definir</p>
-                    <p class="address">Local em breve</p>
-                    <span class="tbd-tag">Em breve</span>
-                </div>
-                <div class="clean-card">
-                    <i class="fas fa-glass-cheers icon-gold-small"></i>
-                    <h3>Recepção</h3>
-                    <p class="highlight-time">07.09.2027</p>
-                    <p class="location">Horário a definir</p>
-                    <p class="address">Local em breve</p>
-                    <span class="tbd-tag">Em breve</span>
-                </div>
+    <section id="ceremony" class="split-section hidden-element">
+        <div class="split-half split-light">
+            <span class="split-eyebrow">07 · 09 · 2027</span>
+            <h3>a cerimônia</h3>
+            <p class="italic">Horário e local em breve</p>
+            <a href="#rsvp" class="btn-elegant small">ver mais detalhes</a>
+        </div>
+        <div class="split-half split-dark" style="background-image: url('images/12-IMG_4591.jpg');">
+            <div class="overlay"></div>
+            <div class="split-dark-content">
+                <span class="split-eyebrow light">save the date</span>
+                <h3>o grande dia</h3>
+                <a href="#rsvp" class="btn-elegant outline-light">confirme presença</a>
             </div>
         </div>
     </section>
 
     <section class="section-clean">
         <div class="container center hidden-element">
-            <h2 class="section-title">Dress Code</h2>
+            <h2 class="section-title">dress code</h2>
             <div class="dress-code-content">
                 <div class="dress-text">
-                    <p class="text-big gold">Elegante &amp; Confortável</p>
+                    <p class="text-big">elegante &amp; confortável</p>
                     <p>Vista-se à vontade para celebrar com a gente — tons suaves, tecidos leves e elegância sem esforço.</p>
                     <br>
-                    <small class="dress-note">Evitar cor branca</small>
+                    <small class="dress-note">evitar cor branca</small>
                 </div>
                 <div class="dress-image">
                     <img src="images/1-IMG_4770.jpg" alt="Inspiração Dress Code" loading="lazy">
@@ -163,7 +170,7 @@
 
     <section id="galeria" class="section-cream gallery-section">
         <div class="container hidden-element">
-            <h2 class="section-title center">Galeria</h2>
+            <h2 class="section-title center">álbum de fotos</h2>
             <p class="subtitle center">Alguns momentos do dia em que tudo começou a ganhar data.</p>
             <div class="gallery-grid">
                 <div class="gallery-item" data-full="images/2-IMG_4762.jpg"><img src="images/2-IMG_4762.jpg" alt="Daiara sorrindo com o buquê" loading="lazy"></div>
@@ -180,28 +187,28 @@
         <div class="rsvp-bg" style="background-image: url('images/5-IMG_4752.jpg');"></div>
         <div class="overlay rsvp-overlay"></div>
         <div class="container narrow hidden-element">
-            <p class="pre-title italic center rsvp-eyebrow">Sua presença é o nosso maior presente</p>
-            <h2 class="section-title center rsvp-title">Confirme Sua Presença</h2>
+            <p class="pre-title italic center rsvp-eyebrow">sua presença é o nosso maior presente</p>
+            <h2 class="section-title center rsvp-title">confirme sua presença</h2>
             <p class="subtitle center rsvp-subtitle">Ainda não temos horário definido, mas já reservamos o dia 07 de setembro de 2027 — e queremos muito contar com você. Confirme abaixo para garantirmos seu lugar.</p>
 
             <form class="form-clean rsvp-form" id="rsvpForm">
                 <div class="input-group">
                     <input type="text" required>
-                    <label>Nome Completo</label>
+                    <label>nome completo</label>
                     <span class="bar"></span>
                 </div>
 
                 <div class="row">
                     <div class="input-group">
                         <select required>
-                            <option value="" disabled selected>Adultos</option>
+                            <option value="" disabled selected>adultos</option>
                             <option>1</option><option>2</option><option>3</option><option>4</option>
                         </select>
                         <span class="bar"></span>
                     </div>
                     <div class="input-group">
                         <select>
-                            <option value="" disabled selected>Crianças</option>
+                            <option value="" disabled selected>crianças</option>
                             <option>0</option><option>1</option><option>2</option>
                         </select>
                         <span class="bar"></span>
@@ -210,11 +217,11 @@
 
                 <div class="input-group">
                     <textarea rows="3"></textarea>
-                    <label>Alguma restrição alimentar ou observação?</label>
+                    <label>alguma restrição alimentar ou observação?</label>
                     <span class="bar"></span>
                 </div>
 
-                <button type="submit" class="btn-elegant fill center-btn">Enviar Confirmação</button>
+                <button type="submit" class="btn-elegant outline-light center-btn">enviar confirmação</button>
             </form>
 
             <div class="rsvp-success hidden" id="rsvpSuccess">
@@ -225,8 +232,8 @@
     </section>
 
     <footer class="footer-minimal">
-        <div class="logo-small">M <span class="gold">&amp;</span> D</div>
-        <small>Matheus &amp; Daiara • 07.09.2027</small>
+        <div class="logo-small">M &amp; D</div>
+        <small>Matheus &amp; Daiara &nbsp;·&nbsp; 07.09.2027</small>
     </footer>
 
     <div class="lightbox" id="lightbox">
