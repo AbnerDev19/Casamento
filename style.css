@@ -1,17 +1,17 @@
 /* --- VARIÁVEIS E RESET --- */
 
 :root {
-    --rose: #8a7566;
-    --rose-light: #b09c8c;
-    --mauve-bg: #C9A499;
-    --cream: #F7F3EC;
-    --cream-deep: #F0E9DF;
-    --charcoal: #1C1A18;
-    --charcoal-soft: #2A2622;
-    --text-gray: #736c66;
+    --rose: #4C6B8A;
+    --rose-light: #8CA6BF;
+    --mauve-bg: #5B7FA0;
+    --cream: #F4F6F8;
+    --cream-deep: #E8EEF2;
+    --charcoal: #172433;
+    --charcoal-soft: #22334A;
+    --text-gray: #5b6672;
     --white: #ffffff;
-    --font-serif: 'Cormorant Garamond', serif;
-    --font-sans: 'Montserrat', sans-serif;
+    --font-serif: 'Playfair Display', serif;
+    --font-sans: 'Jost', sans-serif;
     --transition: all 0.5s ease;
     --section-spacing: 130px;
 }
@@ -91,7 +91,7 @@ h1, h2, h3, h4 {
 .massive-title {
     font-size: 4.6rem;
     line-height: 1;
-    font-weight: 300;
+    font-weight: 400;
     margin-bottom: 30px;
     color: var(--charcoal);
     text-transform: lowercase;
@@ -105,7 +105,7 @@ h1, h2, h3, h4 {
 
 .section-title {
     font-size: 2.6rem;
-    font-weight: 300;
+    font-weight: 400;
     margin-bottom: 20px;
     letter-spacing: 1px;
     position: relative;
@@ -370,7 +370,7 @@ h1, h2, h3, h4 {
 
 .hero-names {
     font-family: var(--font-serif);
-    font-weight: 300;
+    font-weight: 400;
     font-size: 4rem;
     line-height: 1;
     letter-spacing: 3px;
@@ -411,7 +411,7 @@ h1, h2, h3, h4 {
     font-family: var(--font-serif);
     font-size: 3rem;
     line-height: 1;
-    font-weight: 300;
+    font-weight: 400;
     display: inline-block;
     transition: transform 0.4s ease;
 }
