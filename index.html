@@ -34,18 +34,11 @@
 
 <div id="opening" class="opening" role="dialog" aria-modal="true" aria-label="Abrir o convite de Matheus e Daiara" hidden>
   <div class="opening-stage">
-    <div class="paper-envelope">
-      <div class="paper-back" aria-hidden="true"></div>
-      <div class="paper-lining" aria-hidden="true"></div>
-      <div class="paper-pocket" aria-hidden="true"></div>
-      <div class="paper-hinge">
-        <div class="paper-flap" aria-hidden="true"></div>
-        <span class="opening-shadow" aria-hidden="true"></span>
-        <button id="openInvite" class="wax-seal" type="button" aria-label="Abrir convite">
-          <span aria-hidden="true">M<span>&amp;</span>D</span>
-        </button>
-      </div>
-    </div>
+    <img class="opening-poster" src="media/abertura.jpg" width="540" height="960" alt="">
+    <video id="openingVideo" class="opening-video" poster="media/abertura.jpg" width="540" height="960" playsinline muted preload="none" aria-hidden="true" tabindex="-1">
+      <source src="media/abertura.mp4" type="video/mp4">
+    </video>
+    <button id="openInvite" class="opening-trigger" type="button" aria-label="Abrir convite"></button>
     <p class="opening-caption" aria-hidden="true">Toque no lacre para abrir</p>
     <button id="skipOpening" class="opening-skip" type="button">Pular abertura</button>
   </div>
@@ -53,51 +46,46 @@
 
 <main class="card" id="convite">
   <section class="hero" aria-labelledby="titulo">
-    <img class="hero-photo" src="images/3-IMG_4756.jpg" width="1200" height="1800" alt="Matheus e Daiara abraçados, com o buquê azul." fetchpriority="high">
+    <img class="hero-photo" src="images/3-IMG_4756.jpg" alt="Matheus e Daiara abraçados, com o buquê azul." fetchpriority="high">
     <div class="hero-text">
       <p class="kicker">Casamento de</p>
       <h1 id="titulo" class="script" tabindex="-1">Matheus <span>&amp;</span> Daiara</h1>
     </div>
   </section>
 
-  <section class="body" aria-label="Informações da cerimônia">
-    <div class="family" data-reveal>
-      <p class="blessing">Com a bênção de Deus<br>e de seus pais</p>
-      <p class="parents"><span>Dejair e Edmeia</span><i aria-hidden="true">&amp;</i><span>Flaviano e Ilmara</span></p>
+  <section class="body">
+    <p class="blessing">Com a bênção de Deus<br>e de seus pais</p>
+    <p class="parents"><span>Dejair e Edmeia</span><i aria-hidden="true">&amp;</i><span>Flaviano e Ilmara</span></p>
+
+    <div class="rule" aria-hidden="true"><svg><use href="#i-flower"/></svg></div>
+
+    <p class="invite">têm a alegria de convidar você para celebrar a união dos seus filhos</p>
+
+    <div class="when">
+      <p class="date" id="dataCasamento" hidden></p>
+      <p class="time"><svg aria-hidden="true"><use href="#i-clock"/></svg><time datetime="16:30">16h30</time></p>
     </div>
 
-    <div class="rule" aria-hidden="true" data-reveal><svg><use href="#i-flower"/></svg></div>
+    <p class="punctual"><strong>Pontualidade, por favor.</strong><br>Se puder, não se atrase: a cerimônia começa no horário e não aguardaremos a chegada de ninguém.</p>
 
-    <div class="ceremony-info" data-reveal>
-      <p class="invite">têm a alegria de convidar você para celebrar a união dos seus filhos</p>
-      <div class="when">
-        <p class="date" id="dataCasamento" hidden></p>
-        <p class="time"><svg aria-hidden="true"><use href="#i-clock"/></svg><time datetime="16:30">16h30</time></p>
-      </div>
-      <p class="punctual"><strong>Pontualidade, por favor.</strong><br>Pedimos que chegue com antecedência. A cerimônia começará às 16h30, sem aguardar quem se atrasar.</p>
-    </div>
+    <div class="rule" aria-hidden="true"><svg><use href="#i-flower"/></svg></div>
 
-    <div class="rule" aria-hidden="true" data-reveal><svg><use href="#i-flower"/></svg></div>
+    <h2 class="script label">Local:</h2>
+    <p class="place"><strong>Conexão Hall</strong><br>Setor de Mansões IAPI, Guará II, Chácara 15F<br>Brasília – DF · CEP 71070-300</p>
 
-    <div class="location" data-reveal>
-      <h2 class="script label">Local</h2>
-      <p class="place"><strong>Conexão Hall</strong><br>Setor de Mansões IAPI, Guará II, Chácara 15F<br>Brasília – DF · CEP 71070-300</p>
-    </div>
+    <h2 class="script label">Clique nos ícones:</h2>
+    <nav class="actions" aria-label="Ações do convite">
+      <button type="button" data-open="rsvpDialog"><span class="disc"><svg aria-hidden="true"><use href="#i-check"/></svg></span>Confirmar presença</button>
+      <a href="https://maps.app.goo.gl/mioUMfBJgvSdWkzb8?g_st=iw" target="_blank" rel="noopener noreferrer"><span class="disc"><svg aria-hidden="true"><use href="#i-pin"/></svg></span>Local da cerimônia</a>
+      <button type="button" data-open="manualDialog"><span class="disc"><svg aria-hidden="true"><use href="#i-book"/></svg></span>Manual dos convidados</button>
+    </nav>
 
-    <div class="action-block" data-reveal>
-      <nav class="actions" aria-label="Ações do convite">
-        <button type="button" data-open="rsvpDialog"><span class="disc"><svg aria-hidden="true"><use href="#i-check"/></svg></span>Confirmar presença</button>
-        <a href="https://maps.app.goo.gl/mioUMfBJgvSdWkzb8?g_st=iw" target="_blank" rel="noopener noreferrer"><span class="disc"><svg aria-hidden="true"><use href="#i-pin"/></svg></span>Local da cerimônia</a>
-        <button type="button" data-open="manualDialog"><span class="disc"><svg aria-hidden="true"><use href="#i-book"/></svg></span>Manual dos convidados</button>
-      </nav>
-    </div>
-
-    <p class="script closing" data-reveal>Contamos com a sua presença!</p>
+    <p class="script closing">Contamos com a sua presença!</p>
   </section>
 
   <figure class="footer-photo">
-    <img src="images/9-IMG_4656.jpg" alt="Matheus e Daiara se abraçam entre as árvores." width="1200" height="1800" loading="lazy" decoding="async">
-    <figcaption class="script" data-reveal>Matheus &amp; Daiara</figcaption>
+    <img src="images/9-IMG_4656.jpg" alt="Matheus e Daiara se abraçam entre as árvores." loading="lazy">
+    <figcaption class="script">Matheus &amp; Daiara</figcaption>
   </figure>
 </main>
 
@@ -117,7 +105,6 @@
     <p class="err" id="rsvpErr" role="alert"></p>
     <button class="btn" type="submit" disabled>Enviar confirmação</button>
   </form>
-  <noscript><p class="hint">Ative o JavaScript para confirmar sua presença pelo formulário.</p></noscript>
 </dialog>
 
 <dialog id="manualDialog" class="manual" aria-labelledby="manualTitle">
