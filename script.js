@@ -138,6 +138,20 @@ function setUpDialogs() {
     }
 }
 
+function setUpMobileNav() {
+    const menu = document.getElementById('mobileNav');
+    if (!menu) return;
+
+    menu.addEventListener('click', (event) => {
+        if (event.target.closest('a[href^="#"]')) menu.open = false;
+    });
+    menu.addEventListener('keydown', (event) => {
+        if (event.key !== 'Escape' || !menu.open) return;
+        menu.open = false;
+        menu.querySelector('summary').focus();
+    });
+}
+
 function setUpRsvp() {
     const form = document.getElementById('rsvpForm');
     const status = document.getElementById('rsvpStatus');
@@ -200,5 +214,6 @@ document.addEventListener('DOMContentLoaded', () => {
     setUpOpening(reducedMotion);
     setUpScrollReveal(reducedMotion);
     setUpDialogs();
+    setUpMobileNav();
     setUpRsvp();
 });
