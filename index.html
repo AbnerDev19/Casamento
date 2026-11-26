@@ -29,7 +29,6 @@
   <symbol id="i-shirt" viewBox="0 0 48 48"><path d="m18 8-11 6 4 9 5-2v19h16V21l5 2 4-9-11-6c-1 4-3 5-6 5s-5-1-6-5Z"/></symbol>
   <symbol id="i-palette" viewBox="0 0 48 48"><path d="M24 8a16 16 0 1 0 0 32c3 0 4-2 3-4s0-4 3-4h4c3 0 5-2 5-5 0-9-7-19-15-19Z"/><circle cx="16" cy="22" r="2"/><circle cx="23" cy="15" r="2"/><circle cx="32" cy="18" r="2"/></symbol>
   <symbol id="i-sparkle" viewBox="0 0 48 48"><path d="M24 7v12m0 10v12M7 24h12m10 0h12M13 13l7 7m8 8 7 7m0-22-7 7m-8 8-7 7"/></symbol>
-  <symbol id="i-branch" viewBox="0 0 60 120"><path d="M30 118C28 84 30 44 36 6"/><path d="M30 98c-12-1-19-9-20-19 11 0 19 7 20 19Zm1-24c11-2 17-10 17-19-11 1-17 8-17 19Zm-1-6c-11-1-17-8-18-17 10 0 17 6 18 17Zm3-22c10-2 15-9 15-17-10 1-15 7-15 17Zm1-8c-9-1-14-7-14-15 9 0 14 5 14 15Zm4-20c7-2 10-7 10-13-7 1-10 5-10 13Z"/></symbol>
   <symbol id="i-volume" viewBox="0 0 48 48"><path d="M8 18h7l9-8v28l-9-8H8zM32 18a9 9 0 0 1 0 12m5-17a16 16 0 0 1 0 22"/></symbol>
   <symbol id="i-volume-off" viewBox="0 0 48 48"><path d="M8 18h7l9-8v28l-9-8H8zM31 20l9 9m0-9-9 9"/></symbol>
 </svg>
@@ -54,40 +53,53 @@
 
 <main class="card" id="convite">
   <section class="collage" aria-labelledby="titulo">
-    <svg class="branch branch-collage" aria-hidden="true"><use href="#i-branch"/></svg>
-    <figure class="portrait-envelope paper-piece">
-      <div class="envelope-aperture">
-        <img src="images/3-IMG_4756.jpg" width="1200" height="1800" alt="Matheus e Daiara se olham no dia do noivado." fetchpriority="high">
-      </div>
-      <span class="envelope-fold" aria-hidden="true"></span>
-      <span class="portrait-seal" aria-hidden="true"><svg><use href="#i-flower"/></svg></span>
-    </figure>
+    <div class="envelope-layer">
+      <figure class="portrait-envelope paper-piece">
+        <div class="envelope-aperture">
+          <img src="images/3-IMG_4756.jpg" width="1200" height="1800" alt="Matheus e Daiara se olham no dia do noivado." fetchpriority="high">
+        </div>
+        <span class="envelope-fold" aria-hidden="true"></span>
+        <span class="portrait-seal" aria-hidden="true"><svg><use href="#i-flower"/></svg></span>
+      </figure>
+      <img class="flower flower--envelope" src="images/copo-de-leite.webp" width="384" height="576" alt="" decoding="async">
+    </div>
 
     <div class="invitation-paper paper-piece">
-      <svg class="paper-flourish" aria-hidden="true"><use href="#i-flower"/></svg>
+      <span class="invitation-frame" aria-hidden="true">
+        <span class="frame-corner"></span>
+        <span class="frame-corner"></span>
+        <span class="frame-corner"></span>
+        <span class="frame-corner"></span>
+      </span>
       <p class="blessing">Com a bênção de Deus e de seus pais</p>
-      <p class="parents"><span>Dejair e Edmeia</span><span>Flaviano e Ilmara</span></p>
-      <h1 id="titulo" class="script" tabindex="-1">Matheus <span>&amp;</span> Daiara</h1>
-      <p class="invite">têm a alegria de convidar você para celebrar a união dos seus filhos.</p>
+      <p class="parents"><span>Dejair<br>Edmeia</span><span>Flaviano<br>Ilmara</span></p>
+      <h1 id="titulo" class="script" tabindex="-1">Matheus <span>e</span> Daiara</h1>
+      <p class="invite">Convidam você para celebrar seu casamento</p>
+      <img class="flower flower--invitation" src="images/copo-de-leite.webp" width="384" height="576" alt="" decoding="async">
     </div>
 
     <div class="keepsakes">
       <div class="ceremony-card paper-piece">
-        <svg aria-hidden="true"><use href="#i-clock"/></svg>
-        <p class="kicker">Cerimônia</p>
+        <p class="kicker ceremony-label">Cerimônia</p>
         <p id="dataCasamento" class="date" hidden></p>
         <time class="time" datetime="16:30">16h30</time>
-        <p>Conexão Hall</p>
+        <p class="place">Conexão Hall<br><small>Brasília, DF</small></p>
       </div>
-      <span class="monogram-tag paper-piece" aria-hidden="true">M<span>&amp;</span>D</span>
+      <div class="monogram-tag paper-piece" aria-hidden="true">
+        <span class="monogram-m">M</span>
+        <span class="monogram-d">D</span>
+        <img class="flower flower--monogram" src="images/copo-de-leite.webp" width="384" height="576" alt="" decoding="async">
+      </div>
       <figure class="polaroid paper-piece polaroid-one">
-        <img src="images/6-IMG_4736.jpg" alt="Matheus surpreende Daiara com um buquê azul." decoding="async" loading="lazy">
+        <img src="images/9-IMG_4656.jpg" width="1200" height="1800" alt="Matheus e Daiara se abraçam ao ar livre." decoding="async" loading="lazy">
       </figure>
       <figure class="polaroid paper-piece polaroid-two">
-        <img src="images/4-IMG_4753.jpg" alt="Matheus e Daiara sorriem com o buquê e a aliança." decoding="async" loading="lazy">
+        <img src="images/4-IMG_4753.jpg" width="1200" height="1800" alt="Matheus e Daiara sorriem com o buquê e a aliança." decoding="async" loading="lazy">
       </figure>
+      <img class="flower flower--left" src="images/copo-de-leite.webp" width="384" height="576" alt="" decoding="async" loading="lazy">
+      <img class="flower flower--right" src="images/copo-de-leite.webp" width="384" height="576" alt="" decoding="async" loading="lazy">
       <a href="#detalhes" class="details-link paper-piece" aria-label="Ver detalhes do casamento">
-        <span>Ver</span>
+        <span>Clique para ver</span>
         <strong class="script">Detalhes</strong>
       </a>
     </div>
@@ -95,18 +107,17 @@
 
   <section class="details" id="detalhes" aria-labelledby="detalhesTitle">
     <header class="details-hero">
-      <img src="images/9-IMG_4656.jpg" alt="Matheus abraça Daiara em um jardim." decoding="async" loading="lazy">
+      <img src="images/10-IMG_4633.jpg" width="1200" height="1800" alt="Matheus pede Daiara em casamento no jardim." decoding="async" loading="lazy">
       <div class="details-plaque">
-        <svg aria-hidden="true"><use href="#i-flower"/></svg>
+        <span class="plaque-ornament" aria-hidden="true"></span>
         <h2 id="detalhesTitle" class="script">Detalhes</h2>
         <p>Informações para celebrar esse dia com a gente.</p>
       </div>
     </header>
 
     <div class="details-paper">
-      <svg class="branch branch-a" aria-hidden="true"><use href="#i-branch"/></svg>
-      <svg class="branch branch-b" aria-hidden="true"><use href="#i-branch"/></svg>
       <section class="detail-section" aria-labelledby="localTitle">
+        <img class="flower flower--location" src="images/copo-de-leite.webp" width="384" height="576" alt="" decoding="async" loading="lazy">
         <svg class="detail-glyph" aria-hidden="true"><use href="#i-pin"/></svg>
         <h2 id="localTitle" class="script">Localização</h2>
         <p><strong>Conexão Hall</strong></p>
@@ -115,6 +126,7 @@
       </section>
 
       <section class="detail-section" aria-labelledby="presencaTitle">
+        <img class="flower flower--rsvp" src="images/copo-de-leite.webp" width="384" height="576" alt="" decoding="async" loading="lazy">
         <svg class="detail-glyph" aria-hidden="true"><use href="#i-envelope"/></svg>
         <h2 id="presencaTitle" class="script">Confirmação de presença</h2>
         <p>Informe quantos adultos e crianças do seu convite estarão presentes.</p>
@@ -122,6 +134,7 @@
       </section>
 
       <section class="detail-section" aria-labelledby="trajeTitle">
+        <img class="flower flower--attire" src="images/copo-de-leite.webp" width="384" height="576" alt="" decoding="async" loading="lazy">
         <svg class="detail-glyph" aria-hidden="true"><use href="#i-shirt"/></svg>
         <h2 id="trajeTitle" class="script">Traje</h2>
         <p><strong>Esporte fino</strong></p>
@@ -130,6 +143,7 @@
       </section>
 
       <section class="detail-section" aria-labelledby="horariosTitle">
+        <img class="flower flower--schedule" src="images/copo-de-leite.webp" width="384" height="576" alt="" decoding="async" loading="lazy">
         <svg class="detail-glyph" aria-hidden="true"><use href="#i-clock"/></svg>
         <h2 id="horariosTitle" class="script">Cronograma</h2>
         <div class="schedule">

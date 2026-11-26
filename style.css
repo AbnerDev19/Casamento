@@ -6,22 +6,27 @@
 
 :root {
     color-scheme: light;
-    --cream: #faf7ef;
-    --paper: #fffdf6;
+    --cream: #fcfbf8;
+    --paper: #fffefa;
     --olive: #6a7858;
     --olive-deep: #455539;
-    --gold: #846a38;
+    --gold: #857144;
     --gold-wash: #b49b6999;
     --ink: #393d32;
-    --line: #c3bca9;
+    --line: #c3c3b2;
     --serenity: #92a8d1;
     --blue-deep: #4f6a9e;
     --script: 'Pinyon Script', 'Snell Roundhand', cursive;
     --serif: 'Cormorant Garamond', Georgia, serif;
-    --paper-fibre: repeating-linear-gradient(27deg, #65533208 0 1px, transparent 1px 4px);
-    --page-gap: clamp(1rem, 7.75vw, 3.25rem);
-    --paper-shadow: .15rem .26rem .52rem #342c2540;
+    --paper-fibre: repeating-linear-gradient(27deg, #65533205 0 1px, transparent 1px 4px);
+    --page-gap: clamp(.92rem, 6.1vw, 3.2rem);
+    --paper-shadow: .16rem .28rem .65rem #382f263f;
     --settle: cubic-bezier(.23, .67, .3, .98);
+    --scalloped-label: polygon(50% 0, 58% 3%, 70% 3%, 74% 8%, 84% 11%, 86% 18%, 93% 23%, 93% 32%,
+        98% 39%, 97% 46%, 100% 50%, 97% 54%, 98% 61%, 93% 68%, 93% 77%, 86% 82%, 84% 89%,
+        74% 92%, 70% 97%, 58% 97%, 50% 100%, 42% 97%, 30% 97%, 26% 92%, 16% 89%, 14% 82%,
+        7% 77%, 7% 68%, 2% 61%, 3% 54%, 0 50%, 3% 46%, 2% 39%, 7% 32%, 7% 23%, 14% 18%,
+        16% 11%, 26% 8%, 30% 3%, 42% 3%);
 }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -38,7 +43,6 @@ body {
         radial-gradient(ellipse at 75% 105%, #eaedd8 0%, transparent 50%),
         linear-gradient(143deg, #a3b08c 5%, #8b9b75 50%, #c6ceb2 85%);
     background-color: #a1ae88;
-    background-attachment: fixed;
     font: 500 1.125rem/1.52 var(--serif);
     -webkit-font-smoothing: antialiased;
 }
@@ -64,63 +68,60 @@ button { cursor: pointer; }
 }
 
 .card {
-    width: min(calc(100% - 2 * var(--page-gap)), 34rem);
-    margin: clamp(.9rem, 5.1vw, 3.1rem) auto;
-}
-
-.collage, .details {
     position: relative;
-    background-color: var(--cream);
-    background-image: var(--paper-fibre);
-    box-shadow: 0 .3rem 1.35rem #313f2b40;
-}
-
-.collage {
     isolation: isolate;
-    padding: clamp(.65rem, 3.2vw, 1.45rem) clamp(.62rem, 3vw, 1.45rem) clamp(1.55rem, 6vw, 2.75rem);
+    width: min(calc(100% - 2 * var(--page-gap)), 31rem);
+    margin: clamp(.9rem, 4.3vw, 2.25rem) auto;
+    background: var(--paper-fibre), var(--cream);
+    box-shadow: 0 .45rem 1.85rem #313f2b49;
 }
 
-.collage::after, .details-paper::after {
+.card::before {
     position: absolute;
-    inset: .38rem;
-    z-index: 0;
-    border: 1px solid #c3bca977;
+    inset: .34rem;
+    z-index: 1;
+    border: 1px solid #737b5f3d;
     pointer-events: none;
     content: "";
 }
 
-.portrait-envelope {
+.collage {
     position: relative;
+    padding: clamp(.65rem, 3.2vw, 1.4rem) clamp(.65rem, 3.5vw, 1.3rem) 1.25rem;
+}
+
+.paper-piece { position: relative; box-shadow: var(--paper-shadow); }
+.envelope-layer { position: relative; }
+
+.portrait-envelope {
     z-index: 1;
-    width: 93%;
-    aspect-ratio: 1.53;
-    margin-inline: auto;
-    background: linear-gradient(145deg, #fdfbf4 12%, #eae4d5);
-    clip-path: polygon(0 23%, 49% 0, 51% 0, 100% 23%, 100% 100%, 0 100%);
+    width: 85%;
+    aspect-ratio: .91;
+    margin-left: 2.25%;
+    background: linear-gradient(149deg, #fff 0%, #fdfcf7 33%, #eae8df 100%);
+    box-shadow: none;
+    clip-path: polygon(0 32%, 46% 3%, 50% 0, 54% 3%, 100% 32%, 100% 100%, 0 100%);
 }
 
 .envelope-aperture {
     position: absolute;
-    inset: 0 8% 14%;
-    background: #d6c8aeba;
-    clip-path: polygon(50% 0, 93% 28%, 100% 49%, 80% 96%, 21% 96%, 0 52%, 6% 30%);
+    inset: 3% 6% 22%;
+    background: #e7e7de;
+    clip-path: polygon(50% 0, 83% 24%, 100% 51%, 81% 95%, 19% 95%, 0 51%, 17% 24%);
 }
 
 .envelope-aperture img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center 52%;
+    object-position: 50% 49%;
 }
 
 .envelope-fold {
     position: absolute;
-    inset: 31% 0 0;
-    background:
-        var(--paper-fibre),
-        linear-gradient(140deg, #fffdf7 0%, #f3ede2 58%, #eae0cd 100%);
-    filter: drop-shadow(0 -2px 3px #50432c44);
-    clip-path: polygon(0 0, 49.5% 51%, 50.5% 51%, 100% 0, 100% 100%, 0 100%);
+    inset: 39% 0 0;
+    background: var(--paper-fibre), linear-gradient(147deg, #fff 2%, #faf9f5 54%, #eae7dd 100%);
+    clip-path: polygon(0 0, 49.4% 58%, 50.6% 58%, 100% 0, 100% 100%, 0 100%);
 }
 
 .envelope-fold::before, .envelope-fold::after {
@@ -130,31 +131,30 @@ button { cursor: pointer; }
 }
 
 .envelope-fold::before {
-    background: linear-gradient(151deg, #f9f5ea, #e7decd);
-    clip-path: polygon(0 0, 52% 51%, 0 100%);
+    background: linear-gradient(152deg, #fff 0%, #f1efe9 67%, #dedacf 100%);
+    clip-path: polygon(0 0, 50.6% 58%, 0 100%);
 }
 
 .envelope-fold::after {
-    background: linear-gradient(209deg, #fffaf0, #eee4d0);
-    clip-path: polygon(100% 0, 49% 51%, 100% 100%);
+    background: linear-gradient(219deg, #fff 2%, #f4f2eb 59%, #e3dfd4 100%);
+    clip-path: polygon(100% 0, 100% 100%, 49.4% 58%);
 }
 
 .portrait-seal {
     position: absolute;
-    z-index: 1;
-    top: 65%;
+    top: 72%;
     left: 50%;
+    z-index: 2;
     display: grid;
-    width: clamp(1.95rem, 8vw, 3.35rem);
+    width: clamp(1.85rem, 6.6vw, 3rem);
     aspect-ratio: 1;
     place-items: center;
-    border: 1px solid #526042;
+    border: 1px solid #586347;
     border-radius: 48% 53% 45% 54% / 48% 49% 53% 52%;
-    color: #fff5d5;
-    background: radial-gradient(ellipse at 28% 28%, #9da783, transparent 58%), #657650;
+    color: #fff5d7;
+    background: radial-gradient(ellipse at 32% 23%, #a5aa89, transparent 58%), #707c58;
     box-shadow: 1px 3px 5px #433d2a54, inset 1px 1px 3px #d7d8b6ae,
         inset -2px -3px 4px #35432e72;
-    font: 400 clamp(1rem, 4.5vw, 1.5rem)/1 var(--script);
     transform: translate(-50%, -50%) rotate(-7deg);
 }
 
@@ -169,222 +169,237 @@ button { cursor: pointer; }
 
 .portrait-seal svg { width: 49%; height: 49%; stroke-width: 1.35; }
 
-.paper-piece { position: relative; box-shadow: var(--paper-shadow); }
-
 .invitation-paper {
-    z-index: 2;
-    width: 93%;
-    margin: clamp(-2.05rem, -3.65vw, -.85rem) .1rem 0 auto;
-    padding: clamp(1.25rem, 5.1vw, 2.2rem) clamp(.6rem, 2.8vw, 1.32rem);
-    border: 1px solid #9d947a;
+    z-index: 5;
+    width: 87%;
+    margin: -12.5% 1% 0 auto;
+    padding: clamp(1.12rem, 3.9vw, 2.08rem) clamp(.88rem, 3.6vw, 1.65rem);
+    border: 1px solid #59624a;
+    background: var(--paper-fibre), linear-gradient(138deg, #fff 12%, var(--paper) 100%);
+    box-shadow: .12rem .18rem .42rem #2d322746, inset 0 0 12px #bdb89823;
     color: var(--ink);
-    background-color: var(--paper);
-    background-image: var(--paper-fibre);
     text-align: center;
-    transform: rotate(.65deg);
+    transform: rotate(.6deg);
     --paper-delay: 125ms;
 }
 
-.invitation-paper::before, .invitation-paper::after, .ceremony-card::before {
+.invitation-paper::before,
+.invitation-paper::after,
+.ceremony-card::before {
     position: absolute;
     pointer-events: none;
     content: "";
 }
 
 .invitation-paper::before {
-    inset: .28rem;
-    border: 3px double #aaa181;
-    border-radius: .36rem;
+    inset: .23rem;
+    border: 3px double #777a62;
+    border-radius: .04rem;
 }
 
 .invitation-paper::after {
-    inset: .67rem;
-    background:
-        conic-gradient(from 90deg at 1px 1px, #0000 0 75%, var(--gold-wash) 0) left top,
-        conic-gradient(from 180deg at calc(100% - 1px) 1px, #0000 0 75%, var(--gold-wash) 0) right top,
-        conic-gradient(from 0deg at 1px calc(100% - 1px), #0000 0 75%, var(--gold-wash) 0) left bottom,
-        conic-gradient(from 270deg at calc(100% - 1px) calc(100% - 1px), #0000 0 75%, var(--gold-wash) 0) right bottom;
-    background-size: .46rem .46rem;
-    background-repeat: no-repeat;
+    inset: .51rem;
+    border: 1px solid #bdbba4;
+    border-radius: .08rem;
 }
 
-.paper-flourish, .details-plaque > svg {
-    width: 1.35rem;
-    height: 1.35rem;
-    margin: 0 auto .4rem;
-    color: var(--gold);
-    stroke-width: 1.45;
+.invitation-frame {
+    position: absolute;
+    inset: .57rem;
+    z-index: 1;
+    color: #667256;
+    pointer-events: none;
 }
+
+.frame-corner {
+    position: absolute;
+    width: clamp(1.95rem, 12vw, 4.5rem);
+    aspect-ratio: 1;
+    background: url("images/arabesco.webp") center / contain no-repeat;
+    opacity: .88;
+}
+
+.frame-corner:nth-child(1) { top: 0; left: 0; }
+.frame-corner:nth-child(2) { top: 0; right: 0; transform: scaleX(-1); }
+.frame-corner:nth-child(3) { bottom: 0; right: 0; transform: rotate(180deg); }
+.frame-corner:nth-child(4) { bottom: 0; left: 0; transform: scaleY(-1); }
 
 .blessing {
     color: var(--olive-deep);
-    font-size: clamp(1.06rem, 3.8vw, 1.32rem);
+    font-size: clamp(1rem, 3.75vw, 1.3rem);
     font-style: italic;
-    line-height: 1.26;
+    line-height: 1.23;
 }
 
 .parents {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: baseline;
-    gap: .04rem .42rem;
-    margin: .5rem auto .92rem;
+    display: grid;
+    max-width: 21rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: .16rem .69rem;
+    margin: .42rem auto .8rem;
     color: #454a3b;
-    font-size: clamp(.95rem, 3.6vw, 1.14rem);
+    font-size: clamp(.96rem, 3.4vw, 1.135rem);
     font-weight: 600;
     line-height: 1.25;
 }
 
-.parents span { white-space: nowrap; }
-.parents i { color: var(--gold); font: 400 1.3em/1 var(--script); }
-
 #titulo {
     color: var(--olive-deep);
-    font-size: clamp(2.1rem, 9.8vw, 3.9rem);
-    letter-spacing: -.023em;
-    line-height: 1.05;
+    font-size: clamp(2.02rem, 9.8vw, 3.72rem);
+    letter-spacing: -.03em;
+    line-height: 1.08;
     text-wrap: balance;
 }
 
 #titulo span { color: var(--gold); font-size: .8em; }
 
 .invite {
-    max-width: 21rem;
-    margin: .63rem auto 0;
+    max-width: 19rem;
+    margin: .56rem auto 0;
     color: var(--ink);
-    font-size: clamp(1.06rem, 3.8vw, 1.25rem);
-    line-height: 1.28;
+    font-size: clamp(1rem, 3.6vw, 1.215rem);
+    line-height: 1.25;
     text-wrap: balance;
 }
 
+/* The pieces share one stage so their edges can overlap as paper would. */
 .keepsakes {
     position: relative;
-    display: grid;
-    grid-template-columns: minmax(0, 1.16fr) minmax(0, 1fr);
-    grid-template-rows: auto auto;
-    align-items: start;
-    gap: .27rem .8rem;
-    padding: .05rem .35rem .65rem;
+    aspect-ratio: .76;
+    min-height: 15.65rem;
+    margin-top: clamp(-2.14rem, -6vw, -1.25rem);
 }
+
+.keepsakes > .paper-piece { position: absolute; }
 
 .ceremony-card {
     z-index: 1;
-    grid-area: 1 / 1;
-    display: grid;
-    min-height: clamp(8rem, 38vw, 13rem);
-    place-content: center;
-    justify-items: center;
-    gap: .19rem;
-    margin: .36rem 0 0;
-    padding: .95rem .65rem;
+    top: 0;
+    left: 4%;
+    display: flex;
+    width: 54%;
+    min-height: 69%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: .23rem;
+    padding: clamp(2.7rem, 9vw, 3.6rem) .68rem clamp(2.5rem, 8vw, 3.6rem);
     border: 1px solid #56634a;
-    color: #fffbee;
-    background:
-        var(--paper-fibre),
-        linear-gradient(148deg, #707f5b 5%, #596c47 100%);
+    color: #fffdf2;
+    background: var(--paper-fibre), linear-gradient(151deg, #78865f 3%, #5f724d 100%);
     text-align: center;
-    transform: rotate(-4deg);
+    transform: rotate(-3deg);
     --paper-delay: 250ms;
 }
 
 .ceremony-card::before {
-    inset: .36rem;
-    border: 3px double #ece5c6ab;
-    border-radius: .28rem;
+    inset: .26rem;
+    border: 3px double #f9f1d5bb;
+    border-radius: .32rem;
 }
 
-.ceremony-card > svg { width: 1.15rem; height: 1.15rem; margin-bottom: .15rem; color: #f5e5b8; stroke-width: 1.45; }
-.ceremony-card p { line-height: 1.25; }
-.ceremony-card .kicker { color: #fff2cb; font-size: clamp(.85rem, 3.1vw, 1rem); }
-.ceremony-card .time { font-size: clamp(2.05rem, 8.7vw, 3.6rem); line-height: 1; }
+.ceremony-card p { line-height: 1.18; }
+.ceremony-card .ceremony-label { color: #fff5d5; font-size: clamp(.79rem, 3.05vw, 1rem); letter-spacing: .1em; }
+.ceremony-card .time { font-size: clamp(2.05rem, 9.15vw, 3.45rem); line-height: 1; }
 .ceremony-card .date { font-size: clamp(1rem, 3.7vw, 1.23rem); font-weight: 600; }
-.ceremony-card .place { font-size: clamp(1.02rem, 3.65vw, 1.23rem); font-weight: 600; }
+.ceremony-card .place { font-size: clamp(1.015rem, 3.65vw, 1.23rem); font-weight: 600; }
 
 .monogram-tag {
-    z-index: 2;
-    grid-area: 1 / 2;
-    justify-self: center;
-    display: flex;
-    width: min(86%, 9.5rem);
-    min-width: 4.65rem;
-    aspect-ratio: .9;
-    align-items: center;
-    justify-content: center;
-    margin-top: clamp(1rem, 5.3vw, 2.4rem);
-    border: 1px solid #cfc3a7;
-    border-radius: 42% 46% 40% 44% / 27% 30% 26% 26%;
+    top: 10%;
+    right: 4%;
+    z-index: 3;
+    isolation: isolate;
+    width: 40%;
+    aspect-ratio: .86;
     color: var(--olive-deep);
-    background-color: var(--paper);
-    background-image: var(--paper-fibre);
-    font: 400 clamp(2.1rem, 10vw, 4rem)/1 var(--script);
-    transform: rotate(7deg);
+    box-shadow: none;
+    filter: drop-shadow(.07rem .17rem .19rem #453e2d4f);
+    font: 400 clamp(2.65rem, 10.4vw, 4.6rem)/1 var(--script);
+    transform: rotate(8deg);
     --paper-delay: 375ms;
 }
 
-.monogram-tag::after {
+.monogram-tag::before, .monogram-tag::after,
+.details-plaque::before, .details-plaque::after {
     position: absolute;
-    inset: .27rem;
-    border: 1px solid #c9b993;
-    border-radius: inherit;
     pointer-events: none;
+    clip-path: var(--scalloped-label);
     content: "";
 }
 
-.monogram-tag span { margin-inline: .12em; color: var(--gold); font-size: .74em; }
+.monogram-tag::before {
+    inset: 0;
+    z-index: -2;
+    background: #c2b28e;
+}
+
+.monogram-tag::after {
+    inset: .15rem;
+    z-index: -1;
+    background: var(--paper-fibre), radial-gradient(ellipse at 25% 15%, #fffdf4, #f3e9d7 100%);
+}
+
+.monogram-m, .monogram-d {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: 0;
+}
+
+.monogram-m { transform: translate(-58%, -61%); }
+.monogram-d { color: #8b7650; transform: translate(-28%, -35%); }
 
 .polaroid {
-    z-index: 3;
-    width: 75%;
-    padding: .3rem .3rem .76rem;
+    z-index: 4;
+    width: 45%;
+    padding: .3rem .3rem .7rem;
     border: 1px solid #d3cbbb;
-    background-color: var(--paper);
-    background-image: var(--paper-fibre);
+    background: var(--paper-fibre), #fffdf8;
 }
 
 .polaroid img {
     width: 100%;
-    aspect-ratio: 1;
+    aspect-ratio: 1.15;
     object-fit: cover;
-    object-position: center 40%;
+    object-position: center 41%;
 }
 
 .polaroid-one {
-    grid-area: 2 / 2;
-    justify-self: end;
-    margin: clamp(-2.25rem, -5.45vw, -.86rem) .1rem 0 0;
+    top: 42%;
+    right: 2.4%;
     transform: rotate(10deg);
     --paper-delay: 500ms;
 }
 
+.polaroid-one img { object-position: center 61%; }
+
 .polaroid-two {
-    grid-area: 2 / 1;
-    justify-self: end;
-    width: 63%;
-    margin: .28rem 6% 0 0;
-    transform: rotate(-9deg);
+    bottom: 1.5%;
+    left: 3.5%;
+    width: 44%;
+    transform: rotate(-11deg);
     --paper-delay: 625ms;
 }
 
+.polaroid-two img { aspect-ratio: 1.02; object-position: center 37%; }
+
 .details-link {
-    z-index: 4;
-    grid-area: 2 / 2;
-    align-self: end;
-    justify-self: center;
+    right: 5.3%;
+    bottom: 3.8%;
+    z-index: 7;
     display: grid;
-    width: clamp(5rem, 22vw, 8.4rem);
+    width: clamp(6rem, 31vw, 11.8rem);
     aspect-ratio: 1;
     align-content: center;
     justify-items: center;
-    gap: .03rem;
-    margin: 1.5rem 0 -.4rem -44%;
-    padding: .55rem;
+    gap: .12rem;
+    padding: .53rem;
     border: 1px solid #aaa080;
     border-radius: 50%;
     color: var(--olive-deep);
-    background-color: var(--paper);
-    background-image: var(--paper-fibre);
-    font-size: clamp(.91rem, 3.5vw, 1.13rem);
+    background: var(--paper-fibre), radial-gradient(ellipse at 29% 12%, #fffefa, #f8f3e8);
+    box-shadow: .12rem .28rem .7rem #34372961;
+    font-size: clamp(.92rem, 3.15vw, 1.08rem);
     line-height: 1.05;
     text-align: center;
     text-decoration: none;
@@ -395,15 +410,35 @@ button { cursor: pointer; }
 
 .details-link::before {
     position: absolute;
-    inset: .26rem;
-    border: 1px solid #bfae84;
+    inset: .25rem;
+    border: 1px solid #bfb598;
     border-radius: 50%;
     pointer-events: none;
     content: "";
 }
 
-.details-link .script { font-size: clamp(1.25rem, 5.3vw, 2.3rem); line-height: .9; }
-.details-link:hover { background-color: #f6f0df; box-shadow: .21rem .37rem .63rem #342c2559; }
+.details-link .script {
+    font-size: clamp(1.35rem, 5.8vw, 2.35rem);
+    line-height: .91;
+    white-space: nowrap;
+}
+
+.details-link:hover { background-color: #f2f0e5; box-shadow: .16rem .36rem .8rem #34372975; }
+
+.flower {
+    position: absolute;
+    z-index: 2;
+    width: var(--flower-width, 16%);
+    height: auto;
+    pointer-events: none;
+    user-select: none;
+}
+
+.flower--envelope { right: 4%; bottom: 7%; --flower-width: 16%; transform: rotate(15deg); }
+.flower--invitation { z-index: -1; bottom: -.4rem; left: -8%; --flower-width: 14%; transform: rotate(-15deg) scaleX(-1); }
+.flower--monogram { z-index: 1; right: -14%; bottom: 6%; --flower-width: 45%; transform: rotate(18deg); }
+.flower--left { z-index: 2; bottom: 1%; left: -1.6%; --flower-width: 19%; transform: rotate(-18deg) scaleX(-1); }
+.flower--right { z-index: 6; right: 0; bottom: 9%; --flower-width: 16%; transform: rotate(23deg); }
 
 .invite-revealed .collage .paper-piece {
     animation: paper-settle 600ms var(--settle) var(--paper-delay, 0ms) both;
@@ -415,19 +450,19 @@ button { cursor: pointer; }
 }
 
 .details {
-    margin-top: clamp(1.4rem, 5.5vw, 2.8rem);
-    scroll-margin-top: .7rem;
+    position: relative;
+    scroll-margin-top: .65rem;
 }
 
 .details-hero {
     position: relative;
     display: grid;
-    min-height: clamp(13rem, 58vw, 22rem);
-    align-items: end;
+    min-height: clamp(14.1rem, 56vw, 21rem);
+    align-items: center;
     isolation: isolate;
-    padding: 1.6rem .95rem .7rem;
+    padding: 1.6rem 1.15rem;
     overflow: hidden;
-    background: #d8cbb9;
+    background: #cecab6;
 }
 
 .details-hero > img {
@@ -437,84 +472,119 @@ button { cursor: pointer; }
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center 37%;
+    object-position: center 44%;
 }
 
 .details-hero::before {
     position: absolute;
     inset: 0;
     z-index: -1;
-    background: linear-gradient(0deg, #242d1f75 2%, transparent 70%);
+    background: linear-gradient(0deg, #282c2248, transparent 70%);
     content: "";
 }
 
 .details-plaque {
     position: relative;
-    width: min(100%, 25rem);
+    isolation: isolate;
+    width: min(100%, 24rem);
     margin-inline: auto;
-    padding: clamp(1rem, 4.35vw, 1.7rem) .95rem;
-    border: 1px solid #c4b795;
-    border-radius: 17% 15% 22% 20% / 22% 24% 28% 24%;
+    padding: clamp(1.3rem, 5vw, 2rem) 13%;
     color: var(--ink);
-    background-color: var(--paper);
-    background-image: var(--paper-fibre);
     text-align: center;
-    box-shadow: var(--paper-shadow);
+    filter: drop-shadow(0 .25rem .55rem #36362357);
 }
 
 .details-plaque::before {
+    inset: 0;
+    z-index: -2;
+    background: #d6ceb4;
+}
+
+.details-plaque::after {
+    inset: .16rem;
+    z-index: -1;
+    background: var(--paper-fibre), radial-gradient(ellipse at 43% 14%, #fffefa, #f7f3e9);
+}
+
+.plaque-ornament {
     position: absolute;
-    inset: .23rem;
-    border: 1px solid #d7cbb1;
-    border-radius: inherit;
+    z-index: -1;
+    inset: 10% 12%;
     pointer-events: none;
+}
+
+.plaque-ornament::before,
+.plaque-ornament::after {
+    position: absolute;
+    width: clamp(2rem, 11vw, 4.8rem);
+    aspect-ratio: 1;
+    background: url("images/arabesco.webp") center / contain no-repeat;
+    opacity: .26;
     content: "";
 }
 
-.details-plaque h2, .details-plaque .script {
+.plaque-ornament::before { top: 0; left: 0; }
+.plaque-ornament::after { right: 0; bottom: 0; transform: rotate(180deg); }
+
+.details-plaque h2 {
     color: var(--olive-deep);
-    font-size: clamp(2.55rem, 11vw, 4.3rem);
-    line-height: 1.12;
+    font-size: clamp(2.8rem, 11.5vw, 4.52rem);
+    line-height: 1.05;
 }
 
-.details-plaque p { max-width: 20rem; margin: .25rem auto 0; line-height: 1.32; text-wrap: balance; }
+.details-plaque p {
+    max-width: 17rem;
+    margin: .25rem auto 0;
+    font-size: clamp(1rem, 3.7vw, 1.16rem);
+    line-height: 1.25;
+    text-wrap: balance;
+}
 
 .details-paper {
     position: relative;
-    padding: clamp(.8rem, 5vw, 2.05rem) clamp(1.15rem, 5.8vw, 2.6rem) .95rem;
+    padding: clamp(.55rem, 3vw, 1.55rem) clamp(1.25rem, 6.4vw, 2.8rem) .8rem;
+    background: var(--paper-fibre), var(--cream);
     text-align: center;
 }
 
 .detail-section {
     position: relative;
-    z-index: 1;
-    padding-block: clamp(1.5rem, 6.8vw, 2.6rem);
+    isolation: isolate;
+    padding-block: clamp(1.45rem, 6.35vw, 2.65rem);
 }
 
 .detail-section + .detail-section::before {
     position: absolute;
     top: 0;
-    left: 50%;
-    width: .36rem;
-    aspect-ratio: 1;
-    border: 1px solid var(--gold-wash);
-    background: var(--cream);
-    box-shadow: -.44rem .44rem 0 -.13rem #b29f70a8, .44rem -.44rem 0 -.13rem #b29f70a8;
+    right: 8%;
+    left: 8%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #94977977 30% 70%, transparent);
     content: "";
-    transform: translate(-50%, -50%) rotate(45deg);
 }
 
 .detail-section h2 {
-    margin-bottom: .48rem;
+    margin-bottom: .45rem;
     color: var(--olive-deep);
-    font-size: clamp(2.32rem, 9.7vw, 3.6rem);
+    font-size: clamp(2.26rem, 9.5vw, 3.68rem);
     text-wrap: balance;
 }
 
-.detail-section p { max-width: 25rem; margin-inline: auto; }
-.detail-section p + p { margin-top: .52rem; }
-.detail-glyph { width: 1.42rem; height: 1.42rem; margin: 0 auto .48rem; color: var(--gold); stroke-width: 1.5; }
+.detail-section p { max-width: 23rem; margin-inline: auto; }
+.detail-section p + p { margin-top: .48rem; }
+.detail-glyph { width: 1.24rem; height: 1.24rem; margin: 0 auto .44rem; color: var(--olive); stroke-width: 1.5; }
 .detail-section .place { font-size: 1.14em; }
+
+.details-paper .flower {
+    z-index: -1;
+    --flower-width: 13%;
+    opacity: .81;
+}
+
+.flower--location { top: 38%; right: -6%; transform: rotate(-19deg); }
+.flower--rsvp { bottom: 12%; left: -6%; transform: scaleX(-1) rotate(20deg); }
+.flower--attire { top: 34%; right: -6.5%; transform: rotate(22deg); }
+.flower--schedule { top: 24%; left: -6.5%; transform: scaleX(-1) rotate(15deg); }
 
 .paper-button {
     display: inline-flex;
@@ -523,12 +593,12 @@ button { cursor: pointer; }
     justify-content: center;
     gap: .5rem;
     margin: .86rem .12rem 0;
-    padding: .45rem .9rem;
-    border: 1px solid #a7a084;
-    border-radius: .38rem;
+    padding: .41rem 1.35rem;
+    border: 1px solid #888f73;
+    border-radius: 999px;
     color: var(--olive-deep);
     background: var(--paper);
-    box-shadow: inset 0 0 0 2px #eae4d5;
+    box-shadow: inset 0 0 0 2px #e9e8de;
     font-size: 1.04rem;
     font-weight: 600;
     line-height: 1.25;
@@ -537,8 +607,9 @@ button { cursor: pointer; }
     transition: background-color 200ms ease, border-color 200ms ease;
 }
 
-.paper-button:hover { border-color: var(--olive); background: #f1f0e3; }
-.paper-button svg { flex: 0 0 auto; width: 1.05rem; height: 1.05rem; color: var(--gold); stroke-width: 1.7; }
+.paper-button:hover { border-color: var(--olive); background: #f0f1e6; }
+.paper-button svg { flex: 0 0 auto; width: 1.05rem; height: 1.05rem; color: var(--olive); stroke-width: 1.7; }
+
 .dress-note { margin-block: .35rem .15rem; color: var(--olive-deep); font-weight: 600; }
 
 .schedule {
@@ -574,9 +645,7 @@ button { cursor: pointer; }
     gap: .3rem;
     padding: 1.1rem .35rem 1.15rem;
     border-top: 3px double #c5b995;
-    background-color: var(--cream);
-    background-image: var(--paper-fibre);
-    box-shadow: 0 .4rem .8rem #313f2b24;
+    margin-inline: .9rem;
     text-align: center;
 }
 
@@ -659,122 +728,17 @@ input:focus{border-color:var(--olive-deep);outline:2px solid var(--olive);outlin
     .music-button { right: max(1.15rem, calc((100vw - 42rem) / 2)); }
 }
 
+@media (hover: hover) and (min-width: 48rem) {
+    body { background-attachment: fixed; }
+}
+
 @media (max-width: 24rem) {
-    .invitation-paper { width: 96%; }
-    .parents { column-gap: .24rem; }
-    .keepsakes { gap: .35rem .4rem; }
-    .ceremony-card { padding-inline: .37rem; }
-    .details-link { margin-inline-start: -29%; }
+    .parents { column-gap: .34rem; }
+    .ceremony-card { padding-inline: .38rem; }
+    .details-plaque { padding-inline: 11%; }
 }
 
 @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { animation: none !important; transition: none !important; }
     html { scroll-behavior: auto; }
-}
-
-/* ===== v2: cartão único, foto em arco, colagem organizada ===== */
-body { background-attachment: scroll; }
-@media (hover: hover) and (min-width: 48rem) { body { background-attachment: fixed; } }
-
-.card {
-    position: relative;
-    background-color: var(--cream);
-    background-image: var(--paper-fibre);
-    box-shadow: 0 .4rem 1.7rem #313f2b4d;
-}
-.card::before {
-    position: absolute;
-    inset: .4rem;
-    z-index: 0;
-    border: 1px solid #c3bca98c;
-    pointer-events: none;
-    content: "";
-}
-.collage, .details { background: none; box-shadow: none; }
-.collage::after, .details-paper::after { content: none; }
-.collage { padding-bottom: clamp(1.4rem, 6vw, 2.4rem); }
-.details { margin-top: 0; }
-
-.branch {
-    position: absolute;
-    z-index: 0;
-    width: 2.7rem;
-    height: 5.4rem;
-    color: var(--olive);
-    opacity: .4;
-    stroke-width: 1.3;
-    pointer-events: none;
-}
-.branch-collage { left: .75rem; bottom: .9rem; transform: rotate(-10deg); }
-.branch-a { top: .6rem; right: .6rem; transform: scaleX(-1) rotate(8deg); }
-.branch-b { bottom: .6rem; left: .6rem; transform: rotate(-8deg); }
-
-/* foto em arco + lacre */
-.portrait-envelope.paper-piece { width: 86%; aspect-ratio: .98; z-index: 3; background: none; clip-path: none; box-shadow: none; }
-.envelope-fold { display: none; }
-.envelope-aperture {
-    inset: 0;
-    padding: .4rem;
-    border: 1px solid #b9ad8a;
-    border-radius: 999px 999px .4rem .4rem;
-    background: var(--paper);
-    clip-path: none;
-    box-shadow: var(--paper-shadow);
-}
-.envelope-aperture img { border-radius: 999px 999px .2rem .2rem; object-position: 50% 30%; }
-.portrait-seal { top: auto; bottom: 0; z-index: 4; width: clamp(2.4rem, 10vw, 3.4rem); transform: translate(-50%, 50%) rotate(-7deg); }
-
-.invitation-paper {
-    width: 96%;
-    margin: -.6rem auto 0;
-    padding-top: clamp(2.2rem, 9vw, 3.1rem);
-    transform: none;
-}
-
-/* colagem em grade limpa */
-.keepsakes {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-    grid-template-rows: auto auto auto;
-    align-items: center;
-    gap: .6rem .9rem;
-    padding: 1.1rem .4rem .2rem;
-}
-.ceremony-card { grid-area: 1 / 1; margin: 0; transform: rotate(-3deg); min-height: clamp(8.5rem, 40vw, 12rem); }
-.monogram-tag { grid-area: 1 / 2; margin-top: 0; width: min(80%, 8.5rem); transform: rotate(5deg); }
-.polaroid { width: 86%; }
-.polaroid-two { grid-area: 2 / 1; justify-self: center; margin: .3rem 0 0; transform: rotate(-6deg); }
-.polaroid-one { grid-area: 2 / 2; justify-self: center; margin: .3rem 0 0; transform: rotate(6deg); }
-.details-link {
-    grid-area: 3 / 1 / 4 / 3;
-    justify-self: center;
-    align-self: center;
-    width: clamp(6rem, 27vw, 8.4rem);
-    margin: .5rem 0 0;
-    transform: rotate(-3deg);
-}
-
-/* detalhes dentro do mesmo cartão */
-.details-hero {
-    overflow: visible;
-    min-height: clamp(14rem, 62vw, 22rem);
-    margin: 0 .8rem 2.7rem;
-    padding: 1.6rem 1.1rem 0;
-}
-.details-hero > img { border-radius: .5rem; }
-.details-hero::before { border-radius: .5rem; background: linear-gradient(0deg, #242d1f40 2%, transparent 60%); }
-.details-plaque { z-index: 2; margin-bottom: -2.4rem; }
-
-.paper-button {
-    border-radius: 999px;
-    padding: .4rem 1.4rem;
-    border-color: #b5ad92;
-    box-shadow: none;
-    letter-spacing: .02em;
-}
-
-.closing-paper {
-    margin: .5rem .8rem 0;
-    padding-bottom: 1.5rem;
-    background: none;
-    box-shadow: none;
 }
