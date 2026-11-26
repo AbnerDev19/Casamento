@@ -4,12 +4,13 @@ const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
 function setUpOpening() {
   const opening = document.getElementById('opening');
+  const video = document.getElementById('openingVideo');
   const seal = document.getElementById('openInvite');
   const skip = document.getElementById('skipOpening');
   const invitation = document.getElementById('convite');
   const title = document.getElementById('titulo');
   const body = document.body;
-  const sessionKey = 'matheus-daiara-convite-aberto';
+  const sessionKey = 'matheus-daiara-video-aberto';
   let seen = false;
 
   try {
@@ -18,22 +19,14 @@ function setUpOpening() {
     // Browsers can restrict storage in embedded contexts.
   }
 
-  if (!opening || !seal || !skip || !invitation || !title || window.location.hash || seen || reducedMotion.matches) {
-    body.classList.add('intro-ready');
-    return;
-  }
+  if (!opening || !video || !seal || !skip || !invitation || !title
+    || window.location.hash || seen || reducedMotion.matches || video.error) return;
 
-  let revealTimer;
-  let closeTimer;
-
-  function revealInvitation() {
-    body.classList.add('intro-ready');
-  }
+  let requestedPlayback = false;
+  let leaving = false;
+  let loadTimer;
 
   function finishOpening() {
-    window.clearTimeout(revealTimer);
-    window.clearTimeout(closeTimer);
-    revealInvitation();
     opening.hidden = true;
     body.classList.remove('opening-active');
     invitation.inert = false;
@@ -47,24 +40,72 @@ function setUpOpening() {
     title.focus({ preventScroll: true });
   }
 
-  seal.addEventListener('click', () => {
-    if (opening.classList.contains('is-opening')) return;
+  function clearLoadTimer() {
+    window.clearTimeout(loadTimer);
+    loadTimer = undefined;
+  }
+
+  function leaveOpening() {
+    if (leaving) return;
+    leaving = true;
+    clearLoadTimer();
+    if (requestedPlayback) video.pause();
+
     if (reducedMotion.matches) {
       finishOpening();
       return;
     }
 
-    opening.classList.add('is-opening');
+    opening.classList.add('is-leaving');
+    window.setTimeout(finishOpening, 380);
+  }
+
+  function waitForPlayback() {
+    if (requestedPlayback && !leaving && loadTimer === undefined) {
+      loadTimer = window.setTimeout(leaveOpening, 4200);
+    }
+  }
+
+  seal.addEventListener('click', () => {
+    if (requestedPlayback || leaving) return;
+    if (reducedMotion.matches) {
+      leaveOpening();
+      return;
+    }
+
+    requestedPlayback = true;
     seal.setAttribute('aria-disabled', 'true');
-    revealTimer = window.setTimeout(revealInvitation, 850);
-    closeTimer = window.setTimeout(finishOpening, 1450);
+    waitForPlayback();
+    try {
+      video.play()?.catch(leaveOpening);
+    } catch {
+      leaveOpening();
+    }
   });
-  skip.addEventListener('click', finishOpening);
+
+  video.addEventListener('playing', () => {
+    if (!requestedPlayback || leaving) return;
+    clearLoadTimer();
+    opening.classList.add('is-playing');
+    seal.tabIndex = -1;
+    if (document.activeElement === seal) skip.focus({ preventScroll: true });
+  });
+  video.addEventListener('waiting', waitForPlayback);
+  video.addEventListener('stalled', waitForPlayback);
+  video.addEventListener('ended', leaveOpening);
+  video.addEventListener('error', leaveOpening);
+
+  skip.addEventListener('click', leaveOpening);
   opening.addEventListener('keydown', (event) => {
     if (event.key === 'Escape') {
       event.preventDefault();
-      finishOpening();
+      leaveOpening();
     } else if (event.key === 'Tab') {
+      if (opening.classList.contains('is-playing')) {
+        event.preventDefault();
+        skip.focus({ preventScroll: true });
+        return;
+      }
       const boundary = event.shiftKey ? seal : skip;
       if (document.activeElement !== boundary) return;
       event.preventDefault();
@@ -76,50 +117,6 @@ function setUpOpening() {
   invitation.inert = true;
   opening.hidden = false;
   seal.focus({ preventScroll: true });
-}
-
-function setUpScrollReveal() {
-  if (reducedMotion.matches || !('IntersectionObserver' in window)) return;
-
-  const elements = document.querySelectorAll('[data-reveal]');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) reveal(entry.target);
-    });
-  });
-
-  function reveal(element) {
-    element.classList.add('is-visible');
-    observer.unobserve(element);
-  }
-
-  function revealUpTo(element) {
-    for (let ancestor = element?.closest('[data-reveal]'); ancestor; ancestor = ancestor.parentElement?.closest('[data-reveal]')) {
-      reveal(ancestor);
-    }
-  }
-
-  function revealAnchor() {
-    const id = window.location.hash.slice(1);
-    const target = id && document.getElementById(id);
-    if (!target) return;
-    revealUpTo(target);
-    target.querySelectorAll('[data-reveal]').forEach(reveal);
-  }
-
-  elements.forEach((element) => {
-    const bounds = element.getBoundingClientRect();
-    if (bounds.top < window.innerHeight && bounds.bottom > 0) {
-      reveal(element);
-    } else {
-      observer.observe(element);
-    }
-  });
-
-  revealAnchor();
-  document.body.classList.add('has-scroll-reveal');
-  window.addEventListener('hashchange', revealAnchor);
-  document.addEventListener('focusin', (event) => revealUpTo(event.target));
 }
 
 function setUpDialogs() {
@@ -207,6 +204,5 @@ if (date && DATA_DO_CASAMENTO) {
 }
 
 setUpOpening();
-setUpScrollReveal();
 setUpDialogs();
 setUpRsvp();
