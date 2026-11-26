@@ -19,7 +19,7 @@
     --script: 'Pinyon Script', 'Snell Roundhand', cursive;
     --serif: 'Cormorant Garamond', Georgia, serif;
     --paper-fibre: repeating-linear-gradient(27deg, #65533205 0 1px, transparent 1px 4px);
-    --page-gap: clamp(.92rem, 6.1vw, 3.2rem);
+    --composition-width: 36rem;
     --paper-shadow: .16rem .28rem .65rem #382f263f;
     --settle: cubic-bezier(.23, .67, .3, .98);
     --scalloped-label: polygon(50% 0, 58% 3%, 70% 3%, 74% 8%, 84% 11%, 86% 18%, 93% 23%, 93% 32%,
@@ -36,13 +36,7 @@ body {
     min-height: 100vh;
     margin: 0;
     color: var(--ink);
-    background:
-        radial-gradient(ellipse at 3% 42%, #edf0d6a8 0%, transparent 48%),
-        radial-gradient(ellipse at 86% 8%, #f2eec5c9 0%, transparent 34%),
-        radial-gradient(ellipse at 99% 50%, #718456bf 0%, transparent 52%),
-        radial-gradient(ellipse at 75% 105%, #eaedd8 0%, transparent 50%),
-        linear-gradient(143deg, #a3b08c 5%, #8b9b75 50%, #c6ceb2 85%);
-    background-color: #a1ae88;
+    background: var(--paper-fibre), var(--cream);
     font: 500 1.125rem/1.52 var(--serif);
     -webkit-font-smoothing: antialiased;
 }
@@ -67,27 +61,17 @@ button { cursor: pointer; }
     text-transform: uppercase;
 }
 
-.card {
-    position: relative;
-    isolation: isolate;
-    width: min(calc(100% - 2 * var(--page-gap)), 31rem);
-    margin: clamp(.9rem, 4.3vw, 2.25rem) auto;
-    background: var(--paper-fibre), var(--cream);
-    box-shadow: 0 .45rem 1.85rem #313f2b49;
-}
-
-.card::before {
-    position: absolute;
-    inset: .34rem;
-    z-index: 1;
-    border: 1px solid #737b5f3d;
-    pointer-events: none;
-    content: "";
+.collage,
+.details,
+.closing-paper {
+    width: min(100%, var(--composition-width));
+    margin-inline: auto;
 }
 
 .collage {
     position: relative;
     padding: clamp(.65rem, 3.2vw, 1.4rem) clamp(.65rem, 3.5vw, 1.3rem) 1.25rem;
+    overflow: clip;
 }
 
 .paper-piece { position: relative; box-shadow: var(--paper-shadow); }
@@ -95,9 +79,9 @@ button { cursor: pointer; }
 
 .portrait-envelope {
     z-index: 1;
-    width: 85%;
-    aspect-ratio: .91;
-    margin-left: 2.25%;
+    width: 80%;
+    aspect-ratio: 1.1;
+    margin-left: 3%;
     background: linear-gradient(149deg, #fff 0%, #fdfcf7 33%, #eae8df 100%);
     box-shadow: none;
     clip-path: polygon(0 32%, 46% 3%, 50% 0, 54% 3%, 100% 32%, 100% 100%, 0 100%);
@@ -114,7 +98,7 @@ button { cursor: pointer; }
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: 50% 49%;
+    object-position: 50% 55%;
 }
 
 .envelope-fold {
@@ -172,6 +156,7 @@ button { cursor: pointer; }
 .invitation-paper {
     z-index: 5;
     width: 87%;
+    container-type: inline-size;
     margin: -12.5% 1% 0 auto;
     padding: clamp(1.12rem, 3.9vw, 2.08rem) clamp(.88rem, 3.6vw, 1.65rem);
     border: 1px solid #59624a;
@@ -245,7 +230,8 @@ button { cursor: pointer; }
 
 #titulo {
     color: var(--olive-deep);
-    font-size: clamp(2.02rem, 9.8vw, 3.72rem);
+    font-size: clamp(1.9rem, 8.5vw, 3.2rem);
+    font-size: clamp(1.9rem, 14cqi, 3.2rem);
     letter-spacing: -.03em;
     line-height: 1.08;
     text-wrap: balance;
@@ -265,7 +251,7 @@ button { cursor: pointer; }
 /* The pieces share one stage so their edges can overlap as paper would. */
 .keepsakes {
     position: relative;
-    aspect-ratio: .76;
+    aspect-ratio: .89;
     min-height: 15.65rem;
     margin-top: clamp(-2.14rem, -6vw, -1.25rem);
 }
@@ -359,6 +345,7 @@ button { cursor: pointer; }
 
 .polaroid img {
     width: 100%;
+    height: auto;
     aspect-ratio: 1.15;
     object-fit: cover;
     object-position: center 41%;
@@ -388,7 +375,7 @@ button { cursor: pointer; }
     bottom: 3.8%;
     z-index: 7;
     display: grid;
-    width: clamp(6rem, 31vw, 11.8rem);
+    width: clamp(5.25rem, 31%, 9.25rem);
     aspect-ratio: 1;
     align-content: center;
     justify-items: center;
@@ -436,8 +423,8 @@ button { cursor: pointer; }
 
 .flower--envelope { right: 4%; bottom: 7%; --flower-width: 16%; transform: rotate(15deg); }
 .flower--invitation { z-index: -1; bottom: -.4rem; left: -8%; --flower-width: 14%; transform: rotate(-15deg) scaleX(-1); }
-.flower--monogram { z-index: 1; right: -14%; bottom: 6%; --flower-width: 45%; transform: rotate(18deg); }
-.flower--left { z-index: 2; bottom: 1%; left: -1.6%; --flower-width: 19%; transform: rotate(-18deg) scaleX(-1); }
+.flower--monogram { z-index: 1; right: -8%; bottom: 6%; --flower-width: 45%; transform: rotate(18deg); }
+.flower--left { z-index: 2; bottom: 1%; left: 1%; --flower-width: 19%; transform: rotate(-18deg) scaleX(-1); }
 .flower--right { z-index: 6; right: 0; bottom: 9%; --flower-width: 16%; transform: rotate(23deg); }
 
 .invite-revealed .collage .paper-piece {
@@ -544,6 +531,7 @@ button { cursor: pointer; }
     position: relative;
     padding: clamp(.55rem, 3vw, 1.55rem) clamp(1.25rem, 6.4vw, 2.8rem) .8rem;
     background: var(--paper-fibre), var(--cream);
+    overflow: clip;
     text-align: center;
 }
 
@@ -645,7 +633,6 @@ button { cursor: pointer; }
     gap: .3rem;
     padding: 1.1rem .35rem 1.15rem;
     border-top: 3px double #c5b995;
-    margin-inline: .9rem;
     text-align: center;
 }
 
@@ -728,8 +715,11 @@ input:focus{border-color:var(--olive-deep);outline:2px solid var(--olive);outlin
     .music-button { right: max(1.15rem, calc((100vw - 42rem) / 2)); }
 }
 
-@media (hover: hover) and (min-width: 48rem) {
-    body { background-attachment: fixed; }
+@media (max-width: 36rem) {
+    .music-button {
+        top: max(.55rem, env(safe-area-inset-top));
+        bottom: auto;
+    }
 }
 
 @media (max-width: 24rem) {
