@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Matheus &amp; Daiara | Convite de casamento</title>
 <meta name="description" content="Matheus e Daiara convidam você para celebrar o seu casamento. Cerimônia às 16h30.">
-<meta name="theme-color" content="#fbf9f5">
+<meta name="theme-color" content="#606d52">
 <meta property="og:title" content="Matheus &amp; Daiara | Convite de casamento">
 <meta property="og:description" content="Com a bênção de Deus e de nossos pais, convidamos você para o nosso casamento.">
 <meta property="og:image" content="https://abnerdev19.github.io/Casamento/images/3-IMG_4756.jpg">
@@ -30,6 +30,8 @@
   <symbol id="i-shirt" viewBox="0 0 48 48"><path d="m18 8-11 6 4 9 5-2v19h16V21l5 2 4-9-11-6c-1 4-3 5-6 5s-5-1-6-5Z"/></symbol>
   <symbol id="i-palette" viewBox="0 0 48 48"><path d="M24 8a16 16 0 1 0 0 32c3 0 4-2 3-4s0-4 3-4h4c3 0 5-2 5-5 0-9-7-19-15-19Z"/><circle cx="16" cy="22" r="2"/><circle cx="23" cy="15" r="2"/><circle cx="32" cy="18" r="2"/></symbol>
   <symbol id="i-sparkle" viewBox="0 0 48 48"><path d="M24 7v12m0 10v12M7 24h12m10 0h12M13 13l7 7m8 8 7 7m0-22-7 7m-8 8-7 7"/></symbol>
+  <symbol id="i-volume" viewBox="0 0 48 48"><path d="M8 18h7l9-8v28l-9-8H8zM32 18a9 9 0 0 1 0 12m5-17a16 16 0 0 1 0 22"/></symbol>
+  <symbol id="i-volume-off" viewBox="0 0 48 48"><path d="M8 18h7l9-8v28l-9-8H8zM31 20l9 9m0-9-9 9"/></symbol>
 </svg>
 
 <div id="opening" class="opening" role="dialog" aria-modal="true" aria-label="Abrir o convite de Matheus e Daiara" hidden>
@@ -44,49 +46,111 @@
   </div>
 </div>
 
+<audio id="weddingMusic" preload="none" src="media/musica.m4a"></audio>
+<button id="musicToggle" class="music-button" type="button" aria-pressed="false" aria-label="Tocar música" hidden>
+  <svg class="music-on" aria-hidden="true"><use href="#i-volume"/></svg>
+  <svg class="music-off" aria-hidden="true"><use href="#i-volume-off"/></svg>
+</button>
+
 <main class="card" id="convite">
-  <section class="hero" aria-labelledby="titulo">
-    <img class="hero-photo" src="images/3-IMG_4756.jpg" alt="Matheus e Daiara abraçados, com o buquê azul." fetchpriority="high">
-    <div class="hero-text">
-      <p class="kicker">Casamento de</p>
+  <section class="collage" aria-labelledby="titulo">
+    <figure class="portrait-envelope paper-piece">
+      <div class="envelope-aperture">
+        <img src="images/3-IMG_4756.jpg" width="1200" height="1800" alt="Matheus e Daiara se olham no dia do noivado." fetchpriority="high">
+      </div>
+      <span class="envelope-fold" aria-hidden="true"></span>
+      <span class="portrait-seal" aria-hidden="true"><svg><use href="#i-flower"/></svg></span>
+    </figure>
+
+    <div class="invitation-paper paper-piece">
+      <svg class="paper-flourish" aria-hidden="true"><use href="#i-flower"/></svg>
+      <p class="blessing">Com a bênção de Deus e de seus pais</p>
+      <p class="parents"><span>Dejair e Edmeia</span><span>Flaviano e Ilmara</span></p>
       <h1 id="titulo" class="script" tabindex="-1">Matheus <span>&amp;</span> Daiara</h1>
+      <p class="invite">têm a alegria de convidar você para celebrar a união dos seus filhos.</p>
+    </div>
+
+    <div class="keepsakes">
+      <div class="ceremony-card paper-piece">
+        <svg aria-hidden="true"><use href="#i-clock"/></svg>
+        <p class="kicker">Cerimônia</p>
+        <p id="dataCasamento" class="date" hidden></p>
+        <time class="time" datetime="16:30">16h30</time>
+        <p>Conexão Hall</p>
+      </div>
+      <span class="monogram-tag paper-piece" aria-hidden="true">M<span>&amp;</span>D</span>
+      <figure class="polaroid paper-piece polaroid-one">
+        <img src="images/6-IMG_4736.jpg" alt="Matheus surpreende Daiara com um buquê azul." decoding="async" loading="lazy">
+      </figure>
+      <figure class="polaroid paper-piece polaroid-two">
+        <img src="images/4-IMG_4753.jpg" alt="Matheus e Daiara sorriem com o buquê e a aliança." decoding="async" loading="lazy">
+      </figure>
+      <a href="#detalhes" class="details-link paper-piece" aria-label="Ver detalhes do casamento">
+        <span>Ver</span>
+        <strong class="script">Detalhes</strong>
+      </a>
     </div>
   </section>
 
-  <section class="body">
-    <p class="blessing">Com a bênção de Deus<br>e de seus pais</p>
-    <p class="parents"><span>Dejair e Edmeia</span><i aria-hidden="true">&amp;</i><span>Flaviano e Ilmara</span></p>
+  <section class="details" id="detalhes" aria-labelledby="detalhesTitle">
+    <header class="details-hero">
+      <img src="images/9-IMG_4656.jpg" alt="Matheus abraça Daiara em um jardim." decoding="async" loading="lazy">
+      <div class="details-plaque">
+        <svg aria-hidden="true"><use href="#i-flower"/></svg>
+        <h2 id="detalhesTitle" class="script">Detalhes</h2>
+        <p>Informações para celebrar esse dia com a gente.</p>
+      </div>
+    </header>
 
-    <div class="rule" aria-hidden="true"><svg><use href="#i-flower"/></svg></div>
+    <div class="details-paper">
+      <section class="detail-section" aria-labelledby="localTitle">
+        <svg class="detail-glyph" aria-hidden="true"><use href="#i-pin"/></svg>
+        <h2 id="localTitle" class="script">Localização</h2>
+        <p><strong>Conexão Hall</strong></p>
+        <p>Setor de Mansões IAPI, Guará II, Chácara 15F<br>Brasília – DF · CEP 71070-300</p>
+        <a class="paper-button" href="https://maps.app.goo.gl/mioUMfBJgvSdWkzb8?g_st=iw" target="_blank" rel="noopener noreferrer">Abrir no mapa</a>
+      </section>
 
-    <p class="invite">têm a alegria de convidar você para celebrar a união dos seus filhos</p>
+      <section class="detail-section" aria-labelledby="presencaTitle">
+        <svg class="detail-glyph" aria-hidden="true"><use href="#i-envelope"/></svg>
+        <h2 id="presencaTitle" class="script">Confirmação de presença</h2>
+        <p>Informe quantos adultos e crianças do seu convite estarão presentes.</p>
+        <button class="paper-button" type="button" data-open="rsvpDialog">Confirmar presença</button>
+      </section>
 
-    <div class="when">
-      <p class="date" id="dataCasamento" hidden></p>
-      <p class="time"><svg aria-hidden="true"><use href="#i-clock"/></svg><time datetime="16:30">16h30</time></p>
+      <section class="detail-section" aria-labelledby="trajeTitle">
+        <svg class="detail-glyph" aria-hidden="true"><use href="#i-shirt"/></svg>
+        <h2 id="trajeTitle" class="script">Traje</h2>
+        <p><strong>Esporte fino</strong></p>
+        <p class="dress-note">Azul serenity para madrinhas e padrinhos.</p>
+        <button class="paper-button" type="button" data-open="manualDialog">Manual dos convidados</button>
+      </section>
+
+      <section class="detail-section" aria-labelledby="horariosTitle">
+        <svg class="detail-glyph" aria-hidden="true"><use href="#i-clock"/></svg>
+        <h2 id="horariosTitle" class="script">Cronograma</h2>
+        <div class="schedule">
+          <div class="schedule-item">
+            <svg aria-hidden="true"><use href="#i-pin"/></svg>
+            <time datetime="16:20">16h20</time>
+            <span>Chegada sugerida</span>
+          </div>
+          <div class="schedule-item">
+            <svg aria-hidden="true"><use href="#i-heart"/></svg>
+            <time datetime="16:30">16h30</time>
+            <span>Cerimônia</span>
+          </div>
+        </div>
+        <p class="punctual">Pedimos pontualidade. A cerimônia começará no horário e não será possível aguardar quem se atrasar.</p>
+      </section>
     </div>
-
-    <p class="punctual"><strong>Pontualidade, por favor.</strong><br>Se puder, não se atrase: a cerimônia começa no horário e não aguardaremos a chegada de ninguém.</p>
-
-    <div class="rule" aria-hidden="true"><svg><use href="#i-flower"/></svg></div>
-
-    <h2 class="script label">Local:</h2>
-    <p class="place"><strong>Conexão Hall</strong><br>Setor de Mansões IAPI, Guará II, Chácara 15F<br>Brasília – DF · CEP 71070-300</p>
-
-    <h2 class="script label">Clique nos ícones:</h2>
-    <nav class="actions" aria-label="Ações do convite">
-      <button type="button" data-open="rsvpDialog"><span class="disc"><svg aria-hidden="true"><use href="#i-check"/></svg></span>Confirmar presença</button>
-      <a href="https://maps.app.goo.gl/mioUMfBJgvSdWkzb8?g_st=iw" target="_blank" rel="noopener noreferrer"><span class="disc"><svg aria-hidden="true"><use href="#i-pin"/></svg></span>Local da cerimônia</a>
-      <button type="button" data-open="manualDialog"><span class="disc"><svg aria-hidden="true"><use href="#i-book"/></svg></span>Manual dos convidados</button>
-    </nav>
-
-    <p class="script closing">Contamos com a sua presença!</p>
   </section>
 
-  <figure class="footer-photo">
-    <img src="images/9-IMG_4656.jpg" alt="Matheus e Daiara se abraçam entre as árvores." loading="lazy">
-    <figcaption class="script">Matheus &amp; Daiara</figcaption>
-  </figure>
+  <footer class="closing-paper">
+    <span class="closing-monogram" aria-hidden="true">M<span>&amp;</span>D</span>
+    <p class="script">Matheus &amp; Daiara</p>
+    <a href="#convite">Voltar ao convite</a>
+  </footer>
 </main>
 
 <dialog id="rsvpDialog" aria-labelledby="rsvpTitle">
