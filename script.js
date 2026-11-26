@@ -2,7 +2,42 @@
 const DATA_DO_CASAMENTO = '';
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
-function setUpOpening() {
+function setUpMusic() {
+  const audio = document.getElementById('weddingMusic');
+  const toggle = document.getElementById('musicToggle');
+  if (!audio || !toggle) return;
+
+  function setPlaying(playing) {
+    toggle.setAttribute('aria-pressed', String(playing));
+    toggle.setAttribute('aria-label', playing ? 'Pausar música' : 'Tocar música');
+  }
+
+  function handlePlayFailure() {
+    if (audio.paused || audio.error) setPlaying(false);
+  }
+
+  function play() {
+    try {
+      if (audio.ended) audio.currentTime = 0;
+      audio.play()?.catch(handlePlayFailure);
+    } catch {
+      handlePlayFailure();
+    }
+  }
+
+  audio.addEventListener('playing', () => setPlaying(!audio.paused && !audio.ended && !audio.error));
+  ['pause', 'ended', 'error'].forEach((event) => {
+    audio.addEventListener(event, () => setPlaying(false));
+  });
+  toggle.addEventListener('click', () => {
+    if (audio.paused || audio.ended) play();
+    else audio.pause();
+  });
+
+  return { play, show: () => { toggle.hidden = false; } };
+}
+
+function setUpOpening(music) {
   const opening = document.getElementById('opening');
   const video = document.getElementById('openingVideo');
   const seal = document.getElementById('openInvite');
@@ -20,7 +55,11 @@ function setUpOpening() {
   }
 
   if (!opening || !video || !seal || !skip || !invitation || !title
-    || window.location.hash || seen || reducedMotion.matches || video.error) return;
+    || window.location.hash || seen || reducedMotion.matches || video.error) {
+    body.classList.add('invite-revealed');
+    music?.show();
+    return;
+  }
 
   let requestedPlayback = false;
   let leaving = false;
@@ -30,6 +69,7 @@ function setUpOpening() {
     opening.hidden = true;
     body.classList.remove('opening-active');
     invitation.inert = false;
+    music?.show();
 
     try {
       sessionStorage.setItem(sessionKey, 'true');
@@ -50,6 +90,7 @@ function setUpOpening() {
     leaving = true;
     clearLoadTimer();
     if (requestedPlayback) video.pause();
+    body.classList.add('invite-revealed');
 
     if (reducedMotion.matches) {
       finishOpening();
@@ -76,6 +117,7 @@ function setUpOpening() {
     requestedPlayback = true;
     seal.setAttribute('aria-disabled', 'true');
     waitForPlayback();
+    music?.play();
     try {
       video.play()?.catch(leaveOpening);
     } catch {
@@ -203,6 +245,6 @@ if (date && DATA_DO_CASAMENTO) {
   date.hidden = false;
 }
 
-setUpOpening();
+setUpOpening(setUpMusic());
 setUpDialogs();
 setUpRsvp();
